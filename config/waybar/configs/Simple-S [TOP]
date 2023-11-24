@@ -1,0 +1,32 @@
+/* ------ 💫 https://github.com/AXWTV 💫 ------ */
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+
+// ### SIMPLE -SHORT ### //
+
+{
+"include": "~/.config/waybar/modules",
+"layer": "top",
+"position": "top",
+"width": 1050,
+"margin-top": 5,
+
+"modules-left": [
+	"clock",  
+	"custom/weather", 
+	],
+
+"modules-center": [
+	"hyprland/workspaces"
+	],
+
+"modules-right": [
+	"custom/menu", 
+	"tray",
+	"network", 
+	"bluetooth", 
+	"backlight", 
+	"pulseaudio", 
+	"battery", 
+	"custom/power"
+  ],
+}
