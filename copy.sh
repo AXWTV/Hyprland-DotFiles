@@ -1,6 +1,5 @@
 #!/bin/bash
 
-### https://github.com/AXWTV
 ### https://github.com/JaKooLit/JaKooLit
 
 # Check if running as root. If root, script will exit
@@ -9,6 +8,16 @@ if [[ $EUID -eq 0 ]]; then
     exit 1
 fi
 
+echo " 
+
+     ██╗ █████╗    ██╗  ██╗ ██████╗  ██████╗ ██╗     ██╗████████╗      ██████╗  ██████╗ ████████╗███████╗
+     ██║██╔══██╗   ██║ ██╔╝██╔═══██╗██╔═══██╗██║     ██║╚══██╔══╝      ██╔══██╗██╔═══██╗╚══██╔══╝██╔════╝
+     ██║███████║   █████╔╝ ██║   ██║██║   ██║██║     ██║   ██║   █████╗██║  ██║██║   ██║   ██║   ███████╗
+██   ██║██╔══██║   ██╔═██╗ ██║   ██║██║   ██║██║     ██║   ██║   ╚════╝██║  ██║██║   ██║   ██║   ╚════██║
+╚█████╔╝██║  ██║██╗██║  ██╗╚██████╔╝╚██████╔╝███████╗██║   ██║         ██████╔╝╚██████╔╝   ██║   ███████║
+ ╚════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚══════╝╚═╝   ╚═╝         ╚═════╝  ╚═════╝    ╚═╝   ╚══════╝
+                                                                                                         
+"
 # Set some colors for output messages
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
 ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
@@ -132,7 +141,7 @@ fi
 set -e # Exit immediately if a command exits with a non-zero status.
 
 printf "${NOTE} - copying dotfiles\n"
-  for DIR in btop cava dunst hypr kitty rofi swappy swaylock waybar wlogout; do 
+  for DIR in btop cava dunst hypr kitty rofi swappy swaylock wal waybar wlogout; do 
     DIRPATH=~/.config/$DIR
     if [ -d "$DIRPATH" ]; then 
       echo -e "${NOTE} - Config for $DIR found, attempting to back up."
@@ -150,6 +159,9 @@ printf "${NOTE} - copying dotfiles\n"
     fi
   done
 
+# update home folders
+xdg-user-dirs-update
+
 # Copying config files
 printf " Copying config files...\n"
 mkdir -p ~/.config
@@ -162,7 +174,7 @@ cp -r wallpapers ~/Pictures/ && { echo "${OK}Copy completed!"; } || { echo "${ER
 # Initial Symlinks to avoid errors
 # symlinks for waybar
 ln -sf "$HOME/.config/waybar/configs/Default [TOP]" "$HOME/.config/waybar/config" && \
-ln -sf "$HOME/.config/waybar/style/Catppuccin-Mocha.css" "$HOME/.config/waybar/style.css" && \
+ln -sf "$HOME/.config/waybar/style/Pywal.css" "$HOME/.config/waybar/style.css" && \
 
 # symlinks for dunst
 ln -sf "$HOME/.config/dunst/styles/dunstrc-dark" "$HOME/.config/dunst/dunstrc" && \
@@ -173,5 +185,13 @@ chmod +x ~/.config/hypr/scripts/* 2>&1 | tee -a "$LOG"
 # Set executable for initial-boot.sh
 chmod +x ~/.config/hypr/initial-boot.sh 2>&1 | tee -a "$LOG"
 
-printf "\n${OK} Copy Completed!\n\n"
-printf "${NOTE} Need to logout and re-login or reboot\n\n"
+printf " adding user to input group...\n"
+sudo gpasswd -a $(whoami) input 2>&1 | tee -a "$LOG"
+
+# initialize pywal to avoid config error on hyprland
+wal -i ~/Pictures/wallpapers/mecha-nostalgia.png 2>&1 | tee -a "$LOG"
+
+
+printf "\n${OK} Copy Completed!\n\n\n"
+printf "${ORANGE} ATTENTION!!!! \n"
+printf "${ORANGE} YOU NEED to logout and re-login or reboot to avoid issues\n\n"
