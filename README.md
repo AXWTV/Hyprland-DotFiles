@@ -10,7 +10,9 @@
     <img alt="License" src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge&color=B5E8E0&logoColor=D9E0EE&labelColor=302D41"></a>
   <a herf="https://github.com/AXWTV/Hyprland-DotFiles/commits/main">
     <img alt="last-commit" src="https://img.shields.io/github/last-commit/AXWTV/Hyprland-DotFiles?style=for-the-badge&color=B5E8E0&logo=github&logoColor=D9E0EE&labelColor=302D41"></a> 
-    
+  <a href="https://github.com/AXWTV/Hyprland-DotFiles/releases/latest">
+    <img alt="GitHub release" src="https://img.shields.io/github/v/release/AXWTV/Hyprland-DotFiles?style=for-the-badge&color=B5E8E0&logo=github&logoColor=D9E0EE&labelColor=302D41"></a>
+
 <br/>
 </div>
 
