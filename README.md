@@ -9,7 +9,6 @@
   <a href="https://lbesson.mit-license.org/">
     <img alt="License" src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge&color=B5E8E0&logoColor=D9E0EE&labelColor=302D41"></a>
   <a herf="https://github.com/AXWTV/Hyprland-DotFiles/commits/main">
-    <img alt="last-commit" src="https://img.shields.io/github/last-commit/AXWTV/Hyprland-DotFiles?style=for-the-badge&logo=github&logocolor=D9E0EE&labelColor=302D41"></a>
     
 <br/>
 </div>
