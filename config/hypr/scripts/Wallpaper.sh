@@ -1,52 +1,23 @@
 #!/bin/bash
 
-DIR=$HOME/Pictures/wallpapers/
+DIR="$HOME/Pictures/wallpapers/"
+SCRIPTSDIR="$HOME/.config/hypr/scripts"
+
 PICS=($(find ${DIR} -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -o -name "*.gif" \)))
 RANDOMPICS=${PICS[ $RANDOM % ${#PICS[@]} ]}
 
-change_swaybg(){
-  pkill swww
-  pkill swaybg
-  swaybg -m fill -i ${RANDOMPICS}
-}
 
-change_swww(){
-  pkill swaybg
-  swww query || swww init
-  swww img ${RANDOMPICS} --transition-fps 30 --transition-type any --transition-duration 3
-}
+# Transition config
+FPS=30
+TYPE="any"
+DURATION=3
+SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration $DURATION"
 
-change_current(){
-  if pidof swaybg >/dev/null; then
-    change_swaybg
-  else
-    change_swww
-  fi
-}
 
-switch(){
-  if pidof swaybg >/dev/null; then
-    change_swww
-  else
-    change_swaybg
-  fi
-}
+swww query || swww init && swww img ${RANDOMPICS} $SWWW_PARAMS
 
-case "$1" in
-	"swaybg")
-		change_swaybg
-		;;
-	"swww")
-		change_swww
-		;;
-  "s")
-		switch
-		;;
-	*)
-		change_current
-		;;
-esac
 
-exec $HOME/.config/hypr/scripts/PywalSwww.sh &
+${SCRIPTSDIR}/PywalSwww.sh &
 sleep 1
-exec $HOME/.config/hypr/scripts/Refresh.sh
+${SCRIPTSDIR}/Refresh.sh 
+

@@ -1,7 +1,4 @@
-
-/* ------ 💫 https://github.com/AXWTV 💫 ------ */
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-
 /* Catppuccin Latte */
 
 * {
@@ -9,11 +6,9 @@ font-family: "JetBrainsMono Nerd Font";
 font-weight: bold;
 min-height: 0;
 /* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
-font-size: 98%;
+font-size: 97%;
 font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 padding: 1px;
-margin-left: 4px;
-margin-right: 4px;
 }
 
 @import "../waybar/style/catppuccin-themes/latte.css";
@@ -22,9 +17,9 @@ window#waybar {
   transition-property: background-color;
   transition-duration: 0.5s;
   /*background: transparent;*/
-  border: 2px solid @theme_base_color;
+  border-bottom: 3px solid @sapphire;
   background: @theme_base_color;
-  border-radius: 14px;
+  border-radius: 10px;
 }
 
 window#waybar.hidden {
@@ -95,7 +90,10 @@ window#waybar.hidden {
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
-  padding: 0px 6px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 4px;
+	padding-left: 4px;
 }
 
 #idle_inhibitor {
@@ -128,7 +126,7 @@ window#waybar.hidden {
 }
 
 #clock {
-  color: @lavender;
+  color: @yellow;
 }
 
 #cpu {
@@ -167,50 +165,44 @@ window#waybar.hidden {
 	text-shadow: none;
     padding: 0px;
     border-radius: 9px;
-    margin-top: 3px;
-    margin-bottom: 3px;
-    padding-left: 3px;
-    padding-right: 3px;
+    padding-left: 4px;
+    padding-right: 4px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button:hover {
-	border-radius: 8px;
+	border-radius: 10px;
 	color: @overlay0;
-	background-color: @overlay2;
- 	padding-left: 3px;
-    padding-right: 3px;
+	background-color: @surface0;
+ 	padding-left: 2px;
+    padding-right: 2px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button.persistent {
-  color: @surface1;
-  border-radius: 0px;
+	color: @surface1;
+	border-radius: 10px;
 }
 
 #workspaces button.active {
-	color: @lavender;
-  	border-radius: 8px;
-    margin-left: 3px;
-    padding-left: 12px;
-    padding-right: 12px;
-    margin-right: 3px;
+	color: @peach;
+  	border-radius: 10px;
+    padding-left: 8px;
+    padding-right: 8px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button.urgent {
-  color: @red;
-  border-radius: 5px;
+	color: @red;
+ 	border-radius: 0px;
 }
 
 #taskbar button.active {
-    margin-left: 3px;
-    padding-left: 12px;
-    padding-right: 12px;
-    margin-right: 3px;
+    padding-left: 8px;
+    padding-right: 8px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -228,7 +220,6 @@ window#waybar.hidden {
 
 #custom-power {
   color: @red;
-  margin-right: 3px;
 }
 
 #custom-updater {

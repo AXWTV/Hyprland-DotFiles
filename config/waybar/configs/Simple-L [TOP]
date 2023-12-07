@@ -1,7 +1,6 @@
-/* ------ 💫 https://github.com/AXWTV 💫 ------ */
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
 
-// ### SIMPLE ### //
+// ### SIMPLE - Long ### //
 
 {
 "include": "~/.config/waybar/modules",
@@ -13,14 +12,14 @@
 "spacing": 6,
 "fixed-center": true,
 "ipc": true,
-"margin-top": 6,
+"margin-top": 3,
 "margin-left": 8,
 "margin-right": 8,
 
 "modules-left": [
 	"custom/menu",
 	"custom/separator#blank_2", 
-	"hyprland/workspaces",
+	"hyprland/workspaces#pacman",
 	"custom/separator#blank_2",
 	"tray",
 	],

@@ -8,7 +8,7 @@ configuration {
     show-icons:                 true;
     display-drun:               "";
 	display-run:                "";
-    display-filebrowser:        "";
+    display-filebrowser:        "";
     display-window:             "";
 	drun-display-format:        "{name}";
     hover-select:               true;
@@ -24,48 +24,51 @@ configuration {
 
 /* ---- Window ---- */
 window {
-    width:						35%;
+    width:						800px;
+	/*height:						450px;*/
     x-offset:                   0px;
     y-offset:                   0px;
     spacing:                    0px;
-    padding:                    2px;
+    padding:                    1px;
     margin:                     0px; 
-    color:                      transparent;
-    border:                     1px;
+    border:                     2px;
     border-color:               @active-background;
     cursor:                     "default";
-    transparency:               "real";
     location:                   center;
     anchor:                     center;
     fullscreen:                 false;
     enabled:                    true;
-    border-radius:              15px;
+    border-radius:              12px;
+ 	background-color:           @background-color;
 }
 
 /* ---- Mainbox ---- */
 mainbox {
     enabled:                    true;
-    orientation:                horizontal;
-	padding:					20px;
-    background-image:           url("~/.config/rofi/.current_wallpaper", both);
-    children:                   [ "imagebox", "listbox" ];
-    border-radius:              10px;
+    orientation:                vertical;
+	padding:					8px;
+    background-image:           url("~/.config/rofi/.current_wallpaper", width);
+    children:                   [ "inputbar", "listbox" ];
+    border-radius:              12px;
 }
 
 /* ---- Imagebox ---- */
 imagebox {
     background-color:           transparent;
     orientation:                vertical;
-    children:                   [ "inputbar", "dummy", "mode-switcher" ];
+    /*children:                   [ "inputbar"];*/
 }
 
 /* ---- Listbox ---- */
 listbox {
     spacing:                    4px;
-    background-color:           transparent;
     orientation:                vertical;
     children:                   [ "listview" ];
-    border-radius:              10px;
+	padding:					10px;
+    border-radius:              12px;
+    border:                     1px;
+    border-color:               @active-background;
+	background-color:		    @background;
 }
 
 /* ---- Dummy ---- */
@@ -78,64 +81,76 @@ inputbar {
     enabled:                    true;
     text-color:                 @foreground;
     spacing:                    10px;
-    padding:                    10px;
-    border-radius:              10px;
+    border-radius:              12px;
     border-color:               @foreground;
 	background-color:		    @background;
-    children:                   [ "textbox-prompt-colon", "entry" ];
+    children:                   [ "mode-switcher", "textbox-prompt-colon", "entry" ];
+    border:                     1px;
+    border-color:               @active-background;
 }
 
 textbox-prompt-colon {
     enabled:                    true;
+	padding:					10px 0px 10px 10px;
     expand:                     false;
-    str:                        	"🔎";
+    str:                        "🐧";
     text-color:                 inherit;
+	background-color:			transparent;
 }
 
 entry {
     enabled:                    true;
+	padding:					10px 0px 10px 0px;
     text-color:                 inherit;
     cursor:                     text;
     placeholder:                "Search";
     placeholder-color:          inherit;
+	background-color:			transparent;
 }
 
 /* ---- Mode Switcher ---- */
 mode-switcher{
     enabled:                    true;
     spacing:                    10px;
-    background-color:          transparent;
+    background-color:          	transparent;
     text-color:                 @foreground;
 }
 
 button {
-    padding:                   10px;
-    border-radius:             10px;
+    padding:                   2px 24px 2px 24px;
+    border-radius:             12px;
     background-color:          @background;
     text-color:                inherit;
     cursor:                    pointer;
+    border:                     1px;
+    border-color:               @active-background;
 }
 
 button selected {
     background-color:          @selected-normal-background;
     text-color:                @foreground;
+    border:                    1px;
+    border-color:              @background;
+	
 }
 
 /* ---- Listview ---- */
 listview {
-	enabled:						true;
-	columns:						1;
-	lines:								7;
-	spacing:                     4px;
-	dynamic:                     true;
-	cycle:                       true;
-	scrollbar:                   false;
-	layout:                      vertical;
-	reverse:                     false;
-	fixed-height:                true;
-	fixed-columns:               false;
-	background-color:            @background;
-	border-radius:             10px;
+	enabled:					true;
+	columns:					2;
+	lines:						6;
+	spacing:                    5px;
+	padding:					6px;
+	dynamic:                    true;
+	cycle:                      true;
+	scrollbar:                  false;
+	layout:                     vertical;
+	reverse:                    false;
+	fixed-height:               true;
+	fixed-columns:              false;
+	background-color:           transparent;
+	border-radius:   	        12px;
+	border:						0px;
 }
 
 /* ---- Element ---- */
@@ -144,8 +159,8 @@ element {
     padding:                    5px;
     margin:                     2px;
     cursor:                     pointer;
-    background-color:         transparent;
-    border-radius:              10px;
+    background-color:         	transparent;
+    border-radius:              12px;
     border:                     0px;
 }
 
@@ -206,25 +221,25 @@ element-text {
     text-color:                 inherit;
     cursor:                     inherit;
     vertical-align:             0.5;
-    horizontal-align:           0.0;
+    horizontal-align:           0;
 }
 
 /*****----- Message -----*****/
 message {
     background-color:           @background;
     margin:						20px 0px 0px 0px;
-    border-radius: 				10px;
+    border-radius: 				12px;
 }
 
 textbox {
-    padding:                    15px;
-    background-color:      @background;
+    padding:                    10px;
+    background-color:      		@background;
     text-color:                 @foreground;
 }
 
 error-message {
     padding:                    15px;
-    border-radius:            20px;
-    background-color:      @background;
+    border-radius:            	12px;
+    background-color:      		@background;
     text-color:                 @foreground;
 }

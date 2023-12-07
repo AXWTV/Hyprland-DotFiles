@@ -1,6 +1,5 @@
 #!/bin/bash
-
-### https://github.ocm/AXWTV/AXWTV
+## https://github.com/AXWTV/AXWTV
 ### https://github.com/JaKooLit/JaKooLit
 
 # Check if running as root. If root, script will exit
@@ -10,8 +9,14 @@ if [[ $EUID -eq 0 ]]; then
 fi
 
 echo " 
-▄▀▄ ▀▄▀ █ █ █ ▀█▀ █ █   █▄█ ▀▄▀ █▀█ █▀█ █   ▄▀▄ █▄ █ █▀▄ █▀▄ █▀█ ▀█▀ █▀▀ 
-█▀█ █ █ ▀▄▀▄▀  █  ▀▄▀   █ █  █  █▀▀ █▀▄ █▄▄ █▀█ █ ▀█ █▄▀ █▄▀ █▄█  █  ▄██                                                                                                        
+
+ █████╗ ██╗  ██╗██╗    ██╗████████╗██╗   ██╗
+██╔══██╗╚██╗██╔╝██║    ██║╚══██╔══╝██║   ██║
+███████║ ╚███╔╝ ██║ █╗ ██║   ██║   ██║   ██║
+██╔══██║ ██╔██╗ ██║███╗██║   ██║   ╚██╗ ██╔╝
+██║  ██║██╔╝ ██╗╚███╔███╔╝   ██║    ╚████╔╝ 
+╚═╝  ╚═╝╚═╝  ╚═╝ ╚══╝╚══╝    ╚═╝     ╚═══╝  
+                                                                                                                                                  
 "
 # Set some colors for output messages
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
@@ -26,10 +31,15 @@ RESET=$(tput sgr0)
 # Set the name of the log file to include the current date and time
 LOG="install-$(date +%d-%H%M%S)_dotfiles.log"
 
+# update home folders
+xdg-user-dirs-update 2>&1 | tee -a "$LOG" || true
+
 # uncommenting WLR_NO_HARDWARE_CURSORS if nvidia is detected
 if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia; then
   # NVIDIA GPU detected, uncomment line 23 in ENVariables.conf
   sed -i '/env = WLR_NO_HARDWARE_CURSORS,1/s/^#//' config/hypr/configs/ENVariables.conf
+  sed -i '/env = LIBVA_DRIVER_NAME,nvidia/s/^#//' config/hypr/configs/ENVariables.conf
+  sed -i '/env = __GLX_VENDOR_LIBRARY_NAME,nvidia/s/^#//' config/hypr/configs/ENVariables.conf
 fi
 
 # uncommenting WLR_RENDERER_ALLOW_SOFTWARE,1 if running in a VM is detected
@@ -136,7 +146,7 @@ fi
 set -e # Exit immediately if a command exits with a non-zero status.
 
 printf "${NOTE} - copying dotfiles\n"
-  for DIR in btop cava dunst hypr kitty rofi swappy swaylock wal waybar wlogout; do 
+  for DIR in btop cava dunst hypr kitty Kvantum qt5ct rofi swappy swaylock wal waybar wlogout; do 
     DIRPATH=~/.config/$DIR
     if [ -d "$DIRPATH" ]; then 
       echo -e "${NOTE} - Config for $DIR found, attempting to back up."
@@ -146,16 +156,13 @@ printf "${NOTE} - copying dotfiles\n"
   done
 
   for DIRw in wallpapers; do 
-    DIRPATH=~/Pictures/$DIRw
+    DIRPATH=~/Pictures/$DIR
     if [ -d "$DIRPATH" ]; then 
       echo -e "${NOTE} - wallpapers in $DIRw found, attempting to back up."
       mv $DIRPATH $DIRPATH-back-up 2>&1 | tee -a "$LOG"
       echo -e "${NOTE} - Backed up $DIRw to $DIRPATH-back-up."
     fi
   done
-
-# update home folders
-xdg-user-dirs-update
 
 # Copying config files
 printf " Copying config files...\n"
@@ -169,10 +176,8 @@ cp -r wallpapers ~/Pictures/ && { echo "${OK}Copy completed!"; } || { echo "${ER
 # Initial Symlinks to avoid errors
 # symlinks for waybar
 ln -sf "$HOME/.config/waybar/configs/Default [TOP]" "$HOME/.config/waybar/config" && \
-ln -sf "$HOME/.config/waybar/style/Pywal.css" "$HOME/.config/waybar/style.css" && \
+ln -sf "$HOME/.config/waybar/style/Lavander Noir.css" "$HOME/.config/waybar/style.css" && \
 
-# symlinks for dunst
-ln -sf "$HOME/.config/dunst/styles/dunstrc-dark" "$HOME/.config/dunst/dunstrc" && \
   
 # Set some files as executable
 chmod +x ~/.config/hypr/scripts/* 2>&1 | tee -a "$LOG"
@@ -180,13 +185,34 @@ chmod +x ~/.config/hypr/scripts/* 2>&1 | tee -a "$LOG"
 # Set executable for initial-boot.sh
 chmod +x ~/.config/hypr/initial-boot.sh 2>&1 | tee -a "$LOG"
 
+printf "\n\n"
+# adding user to input group
 printf " adding user to input group...\n"
 sudo gpasswd -a $(whoami) input 2>&1 | tee -a "$LOG"
+
+printf "\n\n"
+# Additional wallpaper
+echo "$(tput setaf 6) By default only a few wallpapers are copied...$(tput sgr0)"
+read -n1 -rep "${CAT} Would you like to download additional wallpapers? (y/n)" WALL
+sleep 1
+
+if [[ $WALL =~ ^[Yy]$ ]]; then
+  printf "${NOTE} Downloading additional wallpapers...\n"
+  if git clone https://github.com/AXWTV/Wallpaper-Area.git 2>&1 | tee -a "$LOG"; then
+    cp -R Wallpaper-Area/wallpapers/* ~/Pictures/wallpapers/
+    rm -rf Wallpaper-Area # Remove cloned repository after copying wallpapers
+  else
+    echo "${ERROR} Downloading additional wallpapers failed" 2>&1 | tee -a "$LOG"
+  fi
+fi
 
 # initialize pywal to avoid config error on hyprland
 wal -i ~/Pictures/wallpapers/mecha-nostalgia.png 2>&1 | tee -a "$LOG"
 
+#initial symlink for Pywal Dark and Light for Rofi Themes
+ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/pywal-theme.rasi"
 
+printf "\n\n"
 printf "\n${OK} Copy Completed!\n\n\n"
 printf "${ORANGE} ATTENTION!!!! \n"
 printf "${ORANGE} YOU NEED to logout and re-login or reboot to avoid issues\n\n"

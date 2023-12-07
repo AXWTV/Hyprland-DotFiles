@@ -1,4 +1,3 @@
-/* ------ 💫 https://github.com/AXWTV 💫 ------ */
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
 
 // ### SIMPLE -SHORT ### //
@@ -8,7 +7,7 @@
 "layer": "top",
 "position": "top",
 "width": 1050,
-"margin-top": 5,
+"margin-top": 3,
 
 "modules-left": [
 	"clock",  
@@ -16,17 +15,16 @@
 	],
 
 "modules-center": [
-	"hyprland/workspaces"
+	"hyprland/workspaces#roman"
 	],
 
 "modules-right": [
 	"custom/menu", 
-	"tray",
+	"tray", 
 	"network", 
 	"bluetooth", 
 	"backlight", 
 	"pulseaudio", 
 	"battery", 
-	"custom/power"
-  ],
+	"custom/power"],
 }

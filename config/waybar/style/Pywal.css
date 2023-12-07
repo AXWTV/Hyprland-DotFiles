@@ -1,6 +1,4 @@
-/* ------ 💫 https://github.com/AXWTV 💫 ------ */
-/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-
+/* ----------- 💫 https://github.com/JaKooLit 💫 -------- */
 /* pywal */
 
 @import '../../.cache/wal/colors-waybar.css';
@@ -10,7 +8,7 @@
     font-weight: bold;
     min-height: 0;
     /* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
-    font-size: 98%;
+    font-size: 96%;
     font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
     padding: 1px;
 }
@@ -29,10 +27,7 @@ window#waybar.empty {
 
 window#waybar.empty #window {
     padding: 0px;
-    margin: 0px;
     border: 0px;
-    /*  background-color: rgba(66,66,66,0.5); */
-    /* transparent */
     background-color: transparent;
 }
 
@@ -42,34 +37,38 @@ tooltip {
     border-radius: 10px;
     border-width: 1px;
     border-style: solid;
-    border-color: @foreground;
+    border-color: @color2;
 }
 
 /*-----module groups----*/
 .modules-right {
 	border: 3px solid @color14;
-	border-radius: 100px 0px 0px 0px;
+	border-radius: 40px 0px 0px 0px;
 	background-color: @color1;
-    padding-right: 2px;
-    padding-left: 2px;
-
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 4px;
+	padding-left: 4px;
 }
 
 .modules-center {
 	border: 3px solid @color14;
-	border-radius: 100px 0px 100px 0px;
+	border-radius: 60px 0px 60px 0px;
 	background-color: @background;
-
-
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 4px;
+	padding-left: 4px;
 }
 
 .modules-left {
-    padding-right: 2px;
-    padding-left: 2px;
 	border: 3px solid @color14;
-	border-radius: 0px 0px 100px 0px;
+	border-radius: 0px 0px 40px 0px;
 	background-color: @color1;
-
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 4px;
+	padding-left: 4px;
 }
 
 #workspaces button {
@@ -78,21 +77,17 @@ tooltip {
 	text-shadow: none;
     padding: 0px;
     border-radius: 9px;
-    margin-top: 3px;
-    margin-bottom: 3px;
-    padding-left: 3px;
-    padding-right: 3px;
+    padding-left: 4px;
+    padding-right: 4px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button.active {
-    color: @foreground;
-    background-color: @color0;
-    margin-left: 3px;
-    padding-left: 12px;
-    padding-right: 12px;
-    margin-right: 3px;
+    color: @background;
+    background-color: @color2;
+    padding-left: 8px;
+    padding-right: 8px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -108,8 +103,8 @@ tooltip {
 
 #workspaces button:hover {
     color: @color4;
-    padding-left: 3px;
-    padding-right: 3px;
+    padding-left: 2px;
+    padding-right: 2px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -165,8 +160,10 @@ tooltip {
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
 	color: @foreground;
-    padding-right: 8px;
-    padding-left: 12px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 6px;
+	padding-left: 6px;
 }
 
 #temperature.critical {
@@ -181,10 +178,7 @@ tooltip {
 
 #taskbar button.active {
     background-color: rgb(47, 46, 46);
-    margin-left: 3px;
-    padding-left: 12px;
-    padding-right: 12px;
-    margin-right: 3px;
+	border-radius: 30px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -192,6 +186,7 @@ tooltip {
 #taskbar button:hover {
     padding-left: 3px;
     padding-right: 3px;
+	border-radius: 15px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }

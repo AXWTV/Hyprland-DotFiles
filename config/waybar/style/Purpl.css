@@ -1,8 +1,6 @@
-/* ------ 💫 https://github.com/AXWTV 💫 ------ */
-/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-
+/* ----------- 💫 https://github.com/JaKooLit 💫 -------- */
 /* .........................................*/
-/* .............Purple..................... */
+/* .............Purpl..................... */
 /* ...................,.................... */
 /* --- 👍 designed by https://github.com/Krautt  👍 --- */
 
@@ -11,14 +9,13 @@
 	font-weight: bold;
 	min-height: 0;
 	/* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
-	font-size: 98%;
+	font-size: 97%;
 	font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 	padding: 1px;
 }
 
 window#waybar {
 	background: #100214;
-	border-radius: 10px;
 	color: #cba6f7;
 }
 
@@ -33,13 +30,11 @@ window#waybar.empty {
 
 window#waybar.empty #window {
 	padding: 0px;
-	margin: 0px;
 	border: 0px;
 	/*  background-color: rgba(66,66,66,0.5); */
 	/* transparent */
 	background-color: transparent;
 }
-
 
 tooltip {
 	background: #1e1e2e;
@@ -52,40 +47,43 @@ tooltip {
 
 /*-----module groups----*/
 .modules-right {
-	border: 5px solid #20052a;
+	border: 3px solid #20052a;
 	border-radius: 100px 0px 0px 0px;
 	background-color: #3d174b;
-	padding-right: 5px;
-	padding-left: 5px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 4px;
+	padding-left: 4px;
 }
 
 .modules-center {
-	/*background-color: #1e1e2e;*/
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 4px;
+	padding-left: 4px;
 
 
 }
 
 .modules-left {
 	/*background-color: #1e1e2e;*/
-	border: 5px solid #20052a;
+	border: 3px solid #20052a;
 	border-radius: 0px 0px 100px 0px;
 	background-color: #441a53;
-	padding-right: 5px;
-	padding-left: 5px;
-
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 4px;
+	padding-left: 4px;
 }
 
 #workspaces button {
 	color: #6E6A86;
-	margin-right: 5px;
     box-shadow: none;
 	text-shadow: none;
     padding: 0px;
     border-radius: 9px;
-    margin-top: 3px;
-    margin-bottom: 3px;
-    padding-left: 3px;
-    padding-right: 3px;
+    padding-left: 4px;
+    padding-right: 4px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -94,10 +92,8 @@ tooltip {
 	color: #cba6f7;
 	border-radius: 50%;
 	background-color: black;
-    margin-left: 3px;
-    padding-left: 12px;
-    padding-right: 12px;
-    margin-right: 3px;
+    padding-left: 8px;
+    padding-right: 8px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -114,8 +110,8 @@ tooltip {
 #workspaces button:hover {
 	color: #9CCFD8;
     border-radius: 15px;
- 	padding-left: 3px;
-    padding-right: 3px;
+ 	padding-left: 2px;
+    padding-right: 2px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -167,7 +163,10 @@ tooltip {
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
 	color: whitesmoke;
-	padding: 0px 10px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 4px;
+	padding-left: 4px;
 
 }
 
@@ -183,10 +182,8 @@ tooltip {
 
 #taskbar button.active {
 	background-color: purple;
-    margin-left: 3px;
     padding-left: 12px;
     padding-right: 12px;
-    margin-right: 3px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }

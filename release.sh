@@ -17,7 +17,7 @@ if [ -f Hyprland-DotFiles.tar.gz ]; then
   printf "${NOTE} Hyprland-DotFiles.tar.gz found.\n"
 
   # Get the version from the existing tarball filename
-  existing_version=$(echo Hyprland-Dots.tar.gz | grep -oP 'v\d+\.\d+\.\d+' | sed 's/v//')
+  existing_version=$(echo Hyprland-DotFiles.tar.gz | grep -oP 'v\d+\.\d+\.\d+' | sed 's/v//')
 
   # Fetch the tag_name for the latest release using the GitHub API
   latest_version=$(curl -s https://api.github.com/repos/AXWTV/Hyprland-DotFiles/releases/latest | grep "tag_name" | cut -d '"' -f 4 | sed 's/v//')
@@ -36,10 +36,10 @@ if [ -f Hyprland-DotFiles.tar.gz ]; then
     if [ "$upgrade_choice" = "y" ]; then
 		echo -e "${NOTE} Proceeding to download the latest release."
 		
-		# Delete existing directories starting with AXWTV-Hyprland-Dots
+		# Delete existing directories starting with JaKooLit-Hyprland-Dots
       find . -type d -name 'AXWTV-Hyprland-DotFiles*' -exec rm -rf {} +
       rm -f Hyprland-DotFiles.tar.gz
-      printf "${WARN} Removed existing Hyprland-Dots.tar.gz.\n"
+      printf "${WARN} Removed existing Hyprland-DotFiles.tar.gz.\n"
     else
       echo -e "${NOTE} User chose not to upgrade. Exiting..."
       exit 0
@@ -68,7 +68,7 @@ if [ -z "$latest_tarball_url" ]; then
 fi
 
 # Get the filename from the URL and include the tag name in the file name
-file_name="Hyprland-DotFiles-${latest_tag}.tar.gz"
+file_name="Hyprland-DotFiles${latest_tag}.tar.gz"
 
 # Download the latest release source code tarball to the current directory
 if curl -L "$latest_tarball_url" -o "$file_name"; then
@@ -81,8 +81,8 @@ if curl -L "$latest_tarball_url" -o "$file_name"; then
   # Identify the extracted directory
   extracted_directory=$(tar -tf "$file_name" | grep -o '^[^/]\+' | uniq)
 
-  # Rename the extracted directory to AXWTV-Hyprland-Dots
-  mv "$extracted_directory" AXWTV-Hyprland-Dots || exit 1
+  # Rename the extracted directory to JaKooLit-Hyprland-Dots
+  mv "$extracted_directory" AXWTV-Hyprland-DotFiles || exit 1
 
   cd "AXWTV-Hyprland-DotFiles" || exit 1
 

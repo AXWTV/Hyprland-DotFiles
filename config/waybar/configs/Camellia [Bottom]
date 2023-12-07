@@ -1,4 +1,3 @@
-//* ------ 💫 https://github.com/AXWTV 💫 ------ */
 //* ----------- 💫 https://github.com/JaKooLit 💫 -------- */
 //* ............................................*/
 //* .............CAMELLIA.......................*/
@@ -13,8 +12,8 @@
 "exclusive": true,
 "passthrough": false,
 "position": "bottom",
-"spacing": 0,
-"fixed-center": false,
+"spacing": 4,
+"fixed-center": true,
 "ipc": true,
 //"margin-top": 0,
 //"margin-bottom": 0,
@@ -132,7 +131,7 @@
 },
 
 "tray#cam": {
-	"icon-size": 16,
+	//"icon-size": 16,
 	"spacing": 10
 },
 
@@ -152,7 +151,7 @@
 
 "wlr/taskbar": {
 	"format": "{icon}",
-	"icon-size": 14,
+	//"icon-size": 14,
 	//"icon-theme": "Numix-Circle",
 	"tooltip-format": "{title}",
 	"on-click": "activate",

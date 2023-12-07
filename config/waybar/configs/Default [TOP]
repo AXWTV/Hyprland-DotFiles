@@ -1,4 +1,3 @@
-/* ------ 💫 https://github.com/AXWTV 💫 ------ */
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
 
 // ### DEFAULT ### //
@@ -12,12 +11,12 @@
 "spacing": 3,
 "fixed-center": true,
 "ipc": true,
-"margin-top": 6,
-"margin-left": 15,
-"margin-right": 15,
+"margin-top": 3,
+"margin-left": 8,
+"margin-right": 8,
 
 "modules-left": [
-	"hyprland/workspaces#3",
+	"hyprland/workspaces#pacman",
 	"custom/separator#dot-line",
 	"cpu",
 	"custom/separator#dot-line", 
@@ -49,18 +48,18 @@
 	"custom/separator#dot-line",
 	"bluetooth",
 	"custom/separator#dot-line",
-	//"network",
-	//"custom/separator#dot-line", 
-	//"battery",
-	//"custom/separator#dot-line", 
-	//"backlight",
-	//"custom/separator#dot-line",
+	"network#speed",
+	"custom/separator#dot-line", 
+	"battery",
+	"custom/separator#dot-line", 
+	"backlight",
+	"custom/separator#dot-line",
 	"pulseaudio",
 	"custom/separator#dot-line",
 	//"wireplumber", 
 	"pulseaudio#microphone",
-	//"custom/separator#dot-line",
-	//"keyboard-state",
+	"custom/separator#dot-line",
+	"keyboard-state",
 	"custom/separator#dot-line",
 	"custom/power",
 	],

@@ -1,4 +1,3 @@
-//* ------ 💫 https://github.com/AXWTV 💫 ------ */
 //* ----------- 💫 https://github.com/JaKooLit 💫 -------- */
 //* ............................................*/
 //* .............GARDENIA.......................*/
@@ -23,32 +22,12 @@
 	
 "modules-left": ["clock#gar","tray"],
 	  
-"modules-center": ["hyprland/workspaces#gar"], 
+"modules-center": ["hyprland/workspaces#kanji"], 
 	
 "modules-right": ["pulseaudio#gar","backlight#gar", "battery#gar"],
 
 
 // M O D U L E S //
-
-"hyprland/workspaces#gar": {
-  "disable-scroll": true,
-  "all-outputs": true,
-  "format": "{icon}",
-  "persistent_workspaces": {
-    "1": [],
-    "2": [],
-    "3": [],
-    "4": [],
-    "5": []
-    },
-  "format-icons": {
-    "1": "一",
-    "2": "二",
-    "3": "三",
-    "4": "四",
-    "5": "五"
-    }
-},
 
 "clock#gar": {
   //"format": "{:%A, %I:%M %P}",
