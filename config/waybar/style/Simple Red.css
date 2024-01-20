@@ -43,14 +43,14 @@ tooltip {
 	border-width: 2px;
 	border-style: solid;
 	border-color: #11111b;
-	color: pink;
+	color: #e63535;
 }
 
 /*-----module groups----*/
 .modules-right {
 	border: 5px solid #19141b;
 	border-radius: 50px 50px 50px 50px;
-	background-color: #ba5663;
+	background-color: #f13d3d;
 	padding-top: 2px;
 	padding-bottom: 2px;
 	padding-right: 4px;
@@ -70,7 +70,7 @@ tooltip {
 .modules-left {
 	border: 5px solid #0d0a0f;
 	border-radius: 50px 50px 50px 50px;
-	background-color: #ba5663;
+	background-color: #f13d3d;
 	padding-top: 2px;
 	padding-bottom: 2px;
 	padding-right: 4px;
@@ -78,7 +78,7 @@ tooltip {
 }
 
 #workspaces button {
-	color: pink;
+	color: #e63535 ;
     box-shadow: none;
 	text-shadow: none;
     padding: 0px;
@@ -91,7 +91,7 @@ tooltip {
 
 #workspaces button.active {
 	color: whitesmoke;
-	background-color: #ba5663;
+	background-color: #f13d3d;
     border-radius: 15px 15px 15px 15px;
     padding-left: 8px;
     padding-right: 8px;
@@ -101,7 +101,7 @@ tooltip {
 }
 
 #workspaces button.focused {
-	color: #c42a60;
+	color: #c42a2a;
 }
 
 #workspaces button.urgent {
@@ -110,11 +110,11 @@ tooltip {
 }
 
 #workspaces button:hover {
-	color: #bd172d;
+	color: #f13d3d;
 	background-color: #0d0a0d;
     border-radius: 15px;
- 	padding-left: 5px;
-    padding-right: 5px;
+ 	padding-left: 2px;
+    padding-right: 2px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 
@@ -185,7 +185,7 @@ tooltip {
 }
 
 #taskbar button.active {
-	background-color: pink;
+	background-color: #e63535;
     padding-left: 12px;
     padding-right: 12px;
     animation: gradient_f 20s ease-in infinite;
@@ -193,7 +193,7 @@ tooltip {
 }
 
 #taskbar button:hover {
-	color: #ba5663;
+	color: #f13d3d;
 	background-color: #0d0a0d;
     padding-left: 5px;
     padding-right: 5px;
@@ -229,7 +229,7 @@ tooltip {
 #pulseaudio-slider highlight {
 	min-height: 10px;
 	border-radius: 5px;
-	background-color: pink;
+	background-color: #e63535;
 }
 
 #backlight-slider slider {
@@ -251,5 +251,5 @@ tooltip {
 #backlight-slider highlight {
 	min-width: 10px;
 	border-radius: 5px;
-	background-color: pink;
+	background-color: #e63535;
 }
