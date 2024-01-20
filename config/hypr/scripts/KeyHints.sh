@@ -44,8 +44,8 @@ yad --width=$dynamic_width --height=$dynamic_height \
 " Alt V" "Clipboard Manager" "(cliphist)" \
 " W" "Choose wallpaper" "(swww)" \
 "CTRL ALT W" "Random wallpaper" "(swww)" \
-"CTRL W" "Choose waybar styles" "(waybar styles)" \
-"ALT W" "Choose waybar layout" "(waybar layout)" \
+" CTRL B" "Choose waybar styles" "(waybar styles)" \
+" ALT B" "Choose waybar layout" "(waybar layout)" \
 "CTRL SHIFT W" "Reload Waybar and Dunst" "" \
 " Print" "screenshot" "(grim)" \
 " Shift Print" "screenshot region" "(grim + slurp)" \
