@@ -1,6 +1,7 @@
-/* ----------- 💫 https://github.com/JaKooLit 💫 -------- */
+/*--------- 💫 https://github.com/JaKooLit 💫 -------- */
+/*---------- -💫 https://github.com/AXWTV 💫 -------- */
 /* ..........................................*/
-/* .......Simple #ac8ee2....................... */
+/* .......Simple #bc9bfa....................... */
 /* ......................................... */
 /* --- 👍 designed by https://github.com/Krautt  👍 --- */
 
@@ -43,14 +44,14 @@ tooltip {
 	border-width: 2px;
 	border-style: solid;
 	border-color: #11111b;
-	color: #ac8ee2;
+	color: #bc9bfa;
 }
 
 /*-----module groups----*/
 .modules-right {
 	border: 5px solid #19141b;
 	border-radius: 50px 50px 50px 50px;
-	background-color: #7956ba;
+	background-color: #875bfd;
 	padding-top: 2px;
 	padding-bottom: 2px;
 	padding-right: 4px;
@@ -70,7 +71,7 @@ tooltip {
 .modules-left {
 	border: 5px solid #0d0a0f;
 	border-radius: 50px 50px 50px 50px;
-	background-color: #7956ba;
+	background-color: #875bfd;
 	padding-top: 2px;
 	padding-bottom: 2px;
 	padding-right: 4px;
@@ -78,7 +79,7 @@ tooltip {
 }
 
 #workspaces button {
-	color: #ac8ee2;
+	color: #bc9bfa;
     box-shadow: none;
 	text-shadow: none;
     padding: 0px;
@@ -91,7 +92,7 @@ tooltip {
 
 #workspaces button.active {
 	color: whitesmoke;
-	background-color: #7956ba;
+	background-color: #875bfd;
     border-radius: 15px 15px 15px 15px;
     padding-left: 8px;
     padding-right: 8px;
@@ -110,7 +111,7 @@ tooltip {
 }
 
 #workspaces button:hover {
-	color: #7956ba;
+	color: #875bfd;
 	background-color: #0d0a0d;
     border-radius: 15px;
  	padding-left: 2px;
@@ -185,7 +186,7 @@ tooltip {
 }
 
 #taskbar button.active {
-	background-color: #ac8ee2;
+	background-color: #bc9bfa;
     padding-left: 12px;
     padding-right: 12px;
     animation: gradient_f 20s ease-in infinite;
@@ -193,7 +194,7 @@ tooltip {
 }
 
 #taskbar button:hover {
-	color: #7956ba;
+	color: #875bfd;
 	background-color: #0d0a0d;
     padding-left: 5px;
     padding-right: 5px;
@@ -229,7 +230,7 @@ tooltip {
 #pulseaudio-slider highlight {
 	min-height: 10px;
 	border-radius: 5px;
-	background-color: #ac8ee2;
+	background-color: #bc9bfa;
 }
 
 #backlight-slider slider {
@@ -251,5 +252,5 @@ tooltip {
 #backlight-slider highlight {
 	min-width: 10px;
 	border-radius: 5px;
-	background-color: #ac8ee2;
+	background-color: #bc9bfa;
 }
