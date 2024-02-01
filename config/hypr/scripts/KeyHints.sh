@@ -37,7 +37,7 @@ yad --width=$dynamic_width --height=$dynamic_height \
     --timeout=60 \
     --timeout-indicator=bottom \
 "ESC" "close this app" "" "=" "SUPER KEY" "(SUPER KEY)" \
-" enter" "Terminal" "(kitty)" \
+" enter" "Terminal" "(alacritty)" \
 " or  D" "App Launcher" "(rofi)" \
 " T" "Open File Manager" "(Thunar)" \
 " Q or  Shift Q  " "close focused app" "(kill)" \
