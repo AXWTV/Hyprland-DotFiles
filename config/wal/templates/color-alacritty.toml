@@ -1,0 +1,23 @@
+[colors.bright]
+black = "{color0}"
+blue = "{color4}"
+cyan = "{color7}"
+green = "{color10}"
+magenta = "{color4}"
+red = "{color1}"
+white = "{color7}"
+yellow = "{color5}"
+
+[colors.normal]
+black = "{color0}"
+blue = "{color4}"
+cyan = "{color7}"
+green = "{color10}"
+magenta = "{color4}"
+red = "{color1}"
+white = "{color7}"
+yellow = "{color5}"
+
+[colors.primary]
+background = "{color0}"
+foreground = "{color7}"
