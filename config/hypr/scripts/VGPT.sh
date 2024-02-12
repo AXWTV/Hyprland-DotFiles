@@ -13,10 +13,11 @@
 #fi
 
 
+killall aplay
 # Define variables for file paths
 AUDIO_FILE=~/.cache/audio.wav
 TRANSCRIPT_FILE=~/.cache/transcript.txt
-MODEL_PATH=~/.local/share/vtt/english/vosk-model-small-en-in-0.4
+MODEL_PATH=~/.local/share/vtt/english/vosk-model-small-en-us-0.15
 
 # Record audio for 4 seconds
 ffmpeg -y -f alsa -i default -acodec pcm_s16le -ac 1 -ar 44100 -t 4 $AUDIO_FILE >/dev/null 2>&1
