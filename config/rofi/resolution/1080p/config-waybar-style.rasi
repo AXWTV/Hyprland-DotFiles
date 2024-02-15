@@ -40,7 +40,7 @@ window {
     enabled:                    true;
     border-radius:              12px;
     border-radius:              12px;
- 	background-color:           @background-color;
+ 	background-image:           url("~/.config/rofi/.current_wallpaper", height);
 }
 
 /* ---- Mainbox ---- */
@@ -48,7 +48,7 @@ mainbox {
     enabled:                    true;
     orientation:                vertical;
 	padding:					8px;
-    background-image:    		url("~/.config/rofi/.current_wallpaper", width);
+    background-color:           transparent;
     children:                   [ "inputbar", "listbox"];
     border-radius:              12px;
 }
@@ -82,7 +82,7 @@ inputbar {
     padding:                    8px;
     border-radius:              10px;
     border-color:               @foreground;
-	background-color:			@backrgound90;
+	background-color:			@background;
     children:                   [ "textbox-prompt-colon", "entry" ];
     border:                     1px;
     border-color:               @active-background;

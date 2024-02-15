@@ -1,4 +1,17 @@
 #!/bin/bash
+## /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
+
+# wlogout (Power, Screen Lock, Suspend, etc)
+
+# Set variables for parameters
+A_2160=680
+B_2160=750
+A_1440=500
+B_1440=550
+A_1080=300
+B_1080=380
+A_720=50
+B_720=50
 
 # Check if wlogout is already running
 if pgrep -x "wlogout" > /dev/null; then
@@ -6,36 +19,26 @@ if pgrep -x "wlogout" > /dev/null; then
     exit 0
 fi
 
-# detect monitor res
-x_mon=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .width')
-y_mon=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .height')
-hypr_scale=$(hyprctl -j monitors | jq '.[] | select (.focused == true) | .scale' | sed 's/\.//')
+# Detect monitor resolution and scaling factor
+resolution=$(hyprctl -j monitors | jq -r '.[] | select(.focused==true) | .height / .scale' | awk -F'.' '{print $1}')
+hypr_scale=$(hyprctl -j monitors | jq -r '.[] | select(.focused==true) | .scale')
 
-# Set parameters based on screen resolution
-if [[ $x_mon =~ ^[0-9]+$ && $y_mon =~ ^[0-9]+$ && $hypr_scale =~ ^[0-9]+$ ]]; then
-    resolution=$((y_mon * hypr_scale / 100))
-    
-    echo "Detected Resolution: $resolution"
+echo "Detected Resolution: $resolution"
 
-    if ((resolution >= 2160)); then
-        wlogout --protocol layer-shell -b 6 -T 600 -B 700 &
-        echo "Setting parameters for resolution >= 2160p"
-    elif ((resolution >= 1440)); then
-        wlogout --protocol layer-shell -b 6 -T 500 -B 550 &
-        echo "Setting parameters for resolution >= 1440p"
-    elif ((resolution >= 1080)); then
-        wlogout --protocol layer-shell -b 6 -T 400 -B 400 &
-        echo "Setting parameters for resolution >= 1080p"
-    elif ((resolution >= 720)); then
-        wlogout --protocol layer-shell -b 3 -T 50 -B 50 &
-        echo "Setting parameters for resolution >= 720p"
- 	fi
+# Set parameters based on screen resolution and scaling factor
+if ((resolution >= 2160)); then
+    wlogout --protocol layer-shell -b 3 -T $(awk "BEGIN {printf \"%.0f\", $A_2160 * 2160 * $hypr_scale / $resolution}") -B $(awk "BEGIN {printf \"%.0f\", $B_2160 * 2160 * $hypr_scale / $resolution}") &
+    echo "Setting parameters for resolution >= 2160p"
+elif ((resolution >= 1440)); then
+    wlogout --protocol layer-shell -b 6 -T $(awk "BEGIN {printf \"%.0f\", $A_1440 * 1440 * $hypr_scale / $resolution}") -B $(awk "BEGIN {printf \"%.0f\", $B_1440 * 1440 * $hypr_scale / $resolution}") &
+    echo "Setting parameters for resolution >= 1440p"
+elif ((resolution >= 1080)); then
+    wlogout --protocol layer-shell -b 6 -T $(awk "BEGIN {printf \"%.0f\", $A_1080 * 1080 * $hypr_scale / $resolution}") -B $(awk "BEGIN {printf \"%.0f\", $B_1080 * 1080 * $hypr_scale / $resolution}") &
+    echo "Setting parameters for resolution >= 1080p"
+elif ((resolution > 720)); then
+    wlogout --protocol layer-shell -b 3 -T $(awk "BEGIN {printf \"%.0f\", $A_720 * 720 * $hypr_scale / $resolution}") -B $(awk "BEGIN {printf \"%.0f\", $B_720 * 720 * $hypr_scale / $resolution}") &
+    echo "Setting parameters for resolution >= 720p"
+else
+    wlogout &
+    echo "Setting default parameters for resolution <= 720p"
 fi
-
-# Give some time for wlogout to start and exit
-#sleep 30
-
-# Check if wlogout is still running after starting
-#if pgrep -x "wlogout" > /dev/null; then
-#    pkill -x "wlogout"
-#fi

@@ -30,6 +30,7 @@
 	], 
 
 "modules-right": [
+  "custom/music"
 	"custom/weather",	  
 	"battery", 
 	"backlight",

@@ -7,7 +7,7 @@
 * {
 	font-family: "JetBrains Mono Nerd Font";
 	font-weight: bold;
-	min-height: 0;
+	min-height: 0;	
 	/* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
 	font-size: 97%;
 	font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
@@ -91,7 +91,7 @@ tooltip {
 
 #workspaces button.active {
 	color: whitesmoke;
-	background-color: #ba5663;
+	background-color: pink;
     border-radius: 15px 15px 15px 15px;
     padding-left: 8px;
     padding-right: 8px;
@@ -110,11 +110,11 @@ tooltip {
 }
 
 #workspaces button:hover {
-	color: #bd172d;
+	color: #ba5663;
 	background-color: #0d0a0d;
     border-radius: 15px;
- 	padding-left: 5px;
-    padding-right: 5px;
+ 	padding-left: 2px;
+    padding-right: 2px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 
@@ -124,17 +124,14 @@ tooltip {
 #backlight-slider,
 #battery,
 #bluetooth,
-#cava,
 #clock,
 #cpu,
 #disk,
 #idle_inhibitor,
-#keyboard-state label,
-#keyboard-state label.locked,
 #keyboard-state,
 #memory,
 #mode,
-#mpd,
+#mpris,
 #network,
 #pulseaudio,
 #pulseaudio-slider,
@@ -146,14 +143,16 @@ tooltip {
 #wireplumber,
 #workspaces,
 #custom-backlight,
+#custom-cava_mviz,
 #custom-cycle_wall,
 #custom-keybinds,
+#custom-keyboard,
 #custom-light_dark,
 #custom-lock,
 #custom-menu,
 #custom-power_vertical,
 #custom-power,
-#custom-speaker,
+#custom-swaync,
 #custom-updater,
 #custom-weather,
 #custom-weather.clearNight,
@@ -167,8 +166,8 @@ tooltip {
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
 	color: whitesmoke;
-	padding-top: 2px;
-	padding-bottom: 2px;
+	padding-top: 1px;
+	padding-bottom: 1px;
 	padding-right: 4px;
 	padding-left: 4px;
 
@@ -195,8 +194,8 @@ tooltip {
 #taskbar button:hover {
 	color: #ba5663;
 	background-color: #0d0a0d;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 3px;
+    padding-right: 3px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }

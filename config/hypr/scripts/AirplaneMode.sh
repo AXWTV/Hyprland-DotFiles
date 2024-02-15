@@ -1,9 +1,16 @@
 #!/bin/bash
-wifi="$(nmcli r wifi | awk 'FNR = 2 {print $1}')"
-if [ "$wifi" == "enabled" ]; then
-    rfkill block all &
-    dunstify -t 1000 'airplane mode: active'
+## /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
+# Airplane Mode. Turning on or off all wifi using rfkill. 
+
+notif="$HOME/.config/swaync/images/bell.png"
+
+# Check if any wireless device is blocked
+wifi_blocked=$(rfkill list wifi | grep -o "Soft blocked: yes")
+
+if [ -n "$wifi_blocked" ]; then
+    rfkill unblock wifi
+    notify-send -u low -i "$notif" 'Airplane mode: OFF'
 else
-    rfkill unblock all &
-    dunstify -t 1000 'airplane mode: inactive'
+    rfkill block wifi
+    notify-send -u low -i "$notif" 'Airplane mode: ON'
 fi

@@ -24,7 +24,7 @@ configuration {
 
 /* ---- Window ---- */
 window {
-    width:						900px;
+    width:						700px;
 	/*height:						500px;*/
     x-offset:                   0px;
     y-offset:                   0px;
@@ -39,7 +39,7 @@ window {
     fullscreen:                 false;
     enabled:                    true;
     border-radius:              12px;
- 	background-color:           @background-color;
+    background-image:           url("~/.config/rofi/.current_wallpaper", height);
 }
 
 /* ---- Mainbox ---- */
@@ -47,10 +47,9 @@ mainbox {
     enabled:                    true;
     orientation:                vertical;
 	padding:					8px;
-    background-image:    		url("~/.config/rofi/.current_wallpaper", width);
+    background-color:           transparent;
     children:                   [ "imagebox" ];
     border-radius:              12px;
-    background-color:      		@background;
 }
 
 /* ---- Imagebox ---- */
