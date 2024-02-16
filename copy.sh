@@ -227,7 +227,7 @@ while true; do
 
                 if cp -R Wallpaper-Bank/wallpapers/* ~/Pictures/wallpapers/ >> "$LOG" 2>&1; then
                     echo "${NOTE} Wallpapers copied successfully." 2>&1 | tee -a "$LOG"
-                    rm -rf Wallpaper-Bank 2>&1 # Remove cloned repository after copying wallpapers
+                    rm -rf Wallpaper-Area 2>&1 # Remove cloned repository after copying wallpapers
                     break
                 else
                     echo "${ERROR} Copying wallpapers failed" 2>&1 | tee -a "$LOG"
