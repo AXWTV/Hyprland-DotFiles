@@ -1,3 +1,4 @@
+
 #!/bin/sh
 # still in progress...
 #txt="$(vtt)"
@@ -30,5 +31,4 @@ txt=$(cat $TRANSCRIPT_FILE)
 tgpt -q "answer under 100 words, $txt" | \
 piper --model ~/.local/share/vtt/english/en_US-libritts_r-medium.onnx --speaker 0 --output-raw | \
 aplay -r 22050 -f S16_LE -t raw -
-
 

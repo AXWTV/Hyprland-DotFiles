@@ -3,8 +3,8 @@
 @import '../../.cache/wal/colors-waybar.css';
 
 @define-color noti-border-color @color2;
-@define-color noti-bg rgba(0, 0, 0, 0.8);
-@define-color noti-bg-alt #111111;
+@define-color noti-bg rgba(0, 0, 0, 0.5);
+@define-color noti-bg-alt rgba(0, 0, 0, 0.5);
 @define-color noti-bg-hover @color2;
 @define-color text-color @color2;
 @define-color text-color-alt @color7;
@@ -17,7 +17,7 @@
 
 .control-center .notification-row:focus,
 .control-center .notification-row:hover {
-    opacity: 1;
+    opacity: 0;
     background: @noti-bg;
     border-radius: 10px
 }
@@ -29,6 +29,7 @@
 
 .notification {
 	border-radius: 10px;
+  
 }
 
 .notification-content{
@@ -74,11 +75,11 @@
 .notification-default-action:hover,
 .notification-action:hover {
     color: @text-color;
-    background: @color1
+    background: @color1;
 }
 
 .notification-default-action {
-    border-radius: 10px;
+    border-radius: 7px;
     margin: 5px;
 }
 
@@ -154,20 +155,20 @@
 .body {
     font-size: 1rem;
     font-weight: 200;
-    background: transparent;
+    background: @transparent;
     color: @text-color;
     text-shadow: none
 }
 
 .control-center {
     background: @noti-bg;
-    border: 2px solid @noti-border-color;
+    /*border: 2px solid @noti-border-color;*/
 	color: @text-color;
-    border-radius: 10px;
+    border-radius: 20px;
 }
 
 .control-center-list {
-    background: transparent
+    background: @transparent
 }
 
 .control-center-list-placeholder {
@@ -175,7 +176,7 @@
 }
 
 .floating-notifications {
-    background: transparent;
+    background: @transparent;
 }
 
 .blank-window {
@@ -185,16 +186,16 @@
 .widget-title {
     color: @noti-border-color;
     background: @noti-bg-alt;
-    padding: 3px 6px;
+    padding: 4px 10px;
     margin: 5px;
     font-size: 1rem;
-    border-radius: 10px;
+    border-radius: 20px;
 }
 
 .widget-title>button {
     font-size: 0.75rem;
     color: @text-color;
-    border-radius: 10px;
+    border-radius: 50px;
 	background: transparent;
 	border: 0.5px solid @noti-border-color;
 }
@@ -206,15 +207,15 @@
 
 .widget-dnd {
     background: @noti-bg-alt;
-    padding: 3px 6px;
+    padding: 2px 10px;
     margin: 5px;
-    border-radius: 10px;
+    border-radius: 20px;
     font-size: 1rem;
     color: @noti-border-color;
 }
 
 .widget-dnd>switch {
-    border-radius: 10px;
+    border-radius: 50px;
     /* border: 1px solid #7aa2f7; */
     background: @noti-border-color;
 }
@@ -226,12 +227,12 @@
 
 .widget-dnd>switch slider {
     background: @noti-bg;
-    border-radius: 10px
+    border-radius: 50px
 }
 
 .widget-dnd>switch:checked slider {
     background: @noti-bg;
-    border-radius: 10px
+    border-radius: 20px
 }
 
 .widget-label {
@@ -247,8 +248,8 @@
     color: @text-color;
     background: @noti-bg-alt;
     padding: 3px 6px;
-    margin: 5px;
-    border-radius: 10px;
+    margin: 10px;
+    border-radius: 20px;
 }
 
 .widget-mpris > box > button {
@@ -273,21 +274,21 @@
     font-size: large;
 	color: @noti-border-color;
     padding: 2px;
-    margin: 5px;
-    border-radius: 10px;
+    margin: 8px;
+    border-radius: 20px;
     background: @noti-bg-alt;
 }
 
 .widget-buttons-grid>flowbox>flowboxchild>button {
-    margin: 1px;
+    margin: 0px;
     background: @noti-bg;
-    border-radius: 10px;
+    border-radius: 20px;
     color: @text-color
 }
 
 .widget-buttons-grid>flowbox>flowboxchild>button:hover {
-    background: rgba(122, 162, 247, 0.1);
-    color: @text-color-alt
+    background: rgba(102, 162, 247, 0.1);
+    color: @noti-border-color
 }
 
 .widget-menubar>box>.menu-button-bar>button {
@@ -302,16 +303,19 @@
 
 .widget-volume {
     background: @noti-bg-alt;
-    padding: 2px;
-    margin: 10px 10px 5px 10px;
-    border-radius: 10px;
+    padding: 2px 10px;
+    margin: 5px;
+    border-radius: 50px;
     font-size: x-large;
     color: @text-color
 }
 
 .widget-volume>box>button {
-    background: #7aa2f7;
-    border: none
+    background: @noti-border-color;
+    color: @noti-border-color;
+    border: none;
+    margin: 10px;
+    padding: 10px;
 }
 
 .per-app-volume {

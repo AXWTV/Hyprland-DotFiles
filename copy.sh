@@ -5,7 +5,7 @@
 clear
 
 wallpaper=$HOME/Pictures/wallpapers/Fantasy-Landscape.png
-Waybar_Style="$HOME/.config/waybar/style/[Pywal] Chroma Tally.css"
+Waybar_Style="$HOME/.config/waybar/style/[Pywal] Simple.css"
 
 # Check if running as root. If root, script will exit
 if [[ $EUID -eq 0 ]]; then
@@ -225,7 +225,7 @@ while true; do
             if git clone "https://github.com/AXWTV/Wallpaper-Area.git"; then
                 echo "${NOTE} Wallpapers downloaded successfully." 2>&1 | tee -a "$LOG"
 
-                if cp -R Wallpaper-Bank/wallpapers/* ~/Pictures/wallpapers/ >> "$LOG" 2>&1; then
+                if cp -R Wallpaper-Area/wallpapers/* ~/Pictures/wallpapers/ >> "$LOG" 2>&1; then
                     echo "${NOTE} Wallpapers copied successfully." 2>&1 | tee -a "$LOG"
                     rm -rf Wallpaper-Area 2>&1 # Remove cloned repository after copying wallpapers
                     break

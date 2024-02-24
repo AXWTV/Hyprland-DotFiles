@@ -67,11 +67,11 @@ notify_user "$next_mode"
 
 # swaync color change
 if [ "$next_mode" = "Dark" ]; then
-    sed -i '/@define-color noti-bg/s/rgba([0-9]*,\s*[0-9]*,\s*[0-9]*,\s*[0-9.]*);/rgba(0, 0, 0, 0.8);/' "${swaync_style}"
-	sed -i '/@define-color noti-bg-alt/s/#.*;/#111111;/' "${swaync_style}"
+    sed -i '/@define-color noti-bg/s/rgba([0-9]*,\s*[0-9]*,\s*[0-9]*,\s*[0-9.]*);/rgba(0, 0, 0, 0.5);/' "${swaync_style}"
+    sed -i '/@define-color noti-bg-alt/s/#.*;/rgba(0, 0, 0, 0.8);/' "${swaync_style}"
 else
-    sed -i '/@define-color noti-bg/s/rgba([0-9]*,\s*[0-9]*,\s*[0-9]*,\s*[0-9.]*);/rgba(255, 255, 255, 0.9);/' "${swaync_style}"
-	sed -i '/@define-color noti-bg-alt/s/#.*;/#F0F0F0;/' "${swaync_style}"
+    sed -i '/@define-color noti-bg/s/rgba([0-9]*,\s*[0-9]*,\s*[0-9]*,\s*[0-9.]*);/rgba(255, 255, 255, 0.5);/' "${swaync_style}"
+	sed -i '/@define-color noti-bg-alt/s/#.*;/rgba(255, 255, 255, 0.8);/' "${swaync_style}"
 fi
 
 # Set Dynamic Wallpaper for Dark or Light Mode
