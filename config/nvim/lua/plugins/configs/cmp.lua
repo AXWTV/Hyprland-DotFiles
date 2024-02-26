@@ -15,7 +15,7 @@ local formatting_style = {
   fields = field_arrangement[cmp_style] or { "abbr", "kind", "menu" },
 
   format = function(_, item)
-    local icons = require("nvchad_ui.icons").lspkind
+    local icons = require "nvchad.icons.lspkind"
     local icon = (cmp_ui.icons and icons[item.kind]) or ""
 
     if cmp_style == "atom" or cmp_style == "atom_colored" then
@@ -52,7 +52,7 @@ local options = {
   window = {
     completion = {
       side_padding = (cmp_style ~= "atom" and cmp_style ~= "atom_colored") and 1 or 0,
-      winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,Search:PmenuSel",
+      winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,Search:None",
       scrollbar = false,
     },
     documentation = {
@@ -76,8 +76,8 @@ local options = {
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.close(),
     ["<CR>"] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = false,
+      behavior = cmp.ConfirmBehavior.Insert,
+      select = true,
     },
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then

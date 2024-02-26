@@ -173,6 +173,8 @@ for DIR in alacritty btop cava hypr kitty Kvantum qt5ct qt6ct rofi swappy swaync
   fi
 done
 
+git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
+
 for DIRw in wallpapers; do 
   DIRPATH=~/Pictures/"$DIRw"
   if [ -d "$DIRPATH" ]; then 
