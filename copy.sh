@@ -4,7 +4,7 @@
 
 clear
 
-wallpaper=$HOME/Pictures/wallpapers/Fantasy-Landscape.png
+wallpaper=$HOME/Pictures/wallpapers/Lofi-Room.png
 Waybar_Style="$HOME/.config/waybar/style/[Pywal] Simple.css"
 
 # Check if running as root. If root, script will exit
@@ -163,7 +163,7 @@ get_backup_dirname() {
   echo "back-up_${timestamp}"
 }
 
-for DIR in alacritty btop cava hypr kitty Kvantum qt5ct qt6ct rofi swappy swaync swaylock tmux wal waybar wlogout; do 
+for DIR in alacritty btop cava hypr kitty Kvantum nvim qt5ct qt6ct rofi swappy swaync swaylock tmux wal waybar wlogout; do 
   DIRPATH=~/.config/"$DIR"
   if [ -d "$DIRPATH" ]; then 
     echo -e "${NOTE} - Config for $DIR found, attempting to back up."
@@ -173,7 +173,19 @@ for DIR in alacritty btop cava hypr kitty Kvantum qt5ct qt6ct rofi swappy swaync
   fi
 done
 
-git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
+if [ -f ~/.cache/nvim ]; then
+  rm -rf ~/.cache/nvim
+  echo "Nvim cache has been cleared."
+else
+  echo "Nvim cache is clean."
+fi
+
+if [ -d ~/.local/share/nvm ]; then
+  rm -rf ~/.local/share/nvm
+  echo "Nvm directory has been cleared."
+else
+  echo "Nvm directory is clean."
+fi
 
 for DIRw in wallpapers; do 
   DIRPATH=~/Pictures/"$DIRw"
