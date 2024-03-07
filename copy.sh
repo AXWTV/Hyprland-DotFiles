@@ -163,7 +163,7 @@ get_backup_dirname() {
   echo "back-up_${timestamp}"
 }
 
-for DIR in alacritty btop cava hypr kitty Kvantum nvim qt5ct qt6ct rofi swappy swaync swaylock tmux wal waybar wlogout; do 
+for DIR in alacritty btop cava hypr kitty Kvantum qt5ct qt6ct rofi swappy swaync swaylock tmux wal waybar wlogout; do 
   DIRPATH=~/.config/"$DIR"
   if [ -d "$DIRPATH" ]; then 
     echo -e "${NOTE} - Config for $DIR found, attempting to back up."
@@ -176,16 +176,19 @@ done
 if [ -f ~/.cache/nvim ]; then
   rm -rf ~/.cache/nvim
   echo "Nvim cache has been cleared."
-else
-  echo "Nvim cache is clean."
 fi
 
-if [ -d ~/.local/share/nvm ]; then
-  rm -rf ~/.local/share/nvm
+if [ -d ~/.local/share/nvim ]; then
+  rm -rf ~/.local/share/nvim
   echo "Nvm directory has been cleared."
-else
-  echo "Nvm directory is clean."
 fi
+
+if [ -d ~/.config/nvim ]; then
+  rm -rf ~/.config/nvim
+  echo "Nvm directory has been cleared."
+fi
+
+git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
 
 for DIRw in wallpapers; do 
   DIRPATH=~/Pictures/"$DIRw"
