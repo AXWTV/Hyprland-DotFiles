@@ -24,6 +24,9 @@ if [ ! -f ~/.config/hypr/.initial_startup_done ]; then
 	    "$scriptsDir/PywalSwww.sh" > /dev/null 2>&1 & 
 	fi
      
+    # Initial symlink for ags to work
+    ln -fs ~/.bun/bin/bun /usr/bin/bun
+    
     # Initial symlink for Pywal Dark and Light for Rofi Themes
     ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/pywal-theme.rasi" > /dev/null 2>&1 &
 
