@@ -15,6 +15,7 @@
 </div>
 
 ![alt text](https://raw.githubusercontent.com/AXWTV/Hyprland-DotFiles/ac9f77f8abf78699c593bc130255cb597e20d719/.github/IMG/swappy-20240506-153738.png)
+![alt text](https://raw.githubusercontent.com/AXWTV/Hyprland-DotFiles/c600e39da041940914675ccafd6c6c111bc429fb/.github/IMG/swappy-20240506-160409.png)
 ![alt text](https://raw.githubusercontent.com/AXWTV/Hyprland-DotFiles/ac9f77f8abf78699c593bc130255cb597e20d719/.github/IMG/swappy-20240506-155104.png)
 ![alt text](https://raw.githubusercontent.com/AXWTV/Hyprland-DotFiles/ac9f77f8abf78699c593bc130255cb597e20d719/.github/IMG/swappy-20240506-154421.png)
 ![alt text](https://raw.githubusercontent.com/AXWTV/Hyprland-DotFiles/ac9f77f8abf78699c593bc130255cb597e20d719/.github/IMG/swappy-20240506-154441.png)
