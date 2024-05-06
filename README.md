@@ -14,6 +14,13 @@
 <br/>
 </div>
 
+![alt text](https://raw.githubusercontent.com/AXWTV/Hyprland-DotFiles/ac9f77f8abf78699c593bc130255cb597e20d719/.github/IMG/swappy-20240506-153738.png)
+![alt text](https://raw.githubusercontent.com/AXWTV/Hyprland-DotFiles/ac9f77f8abf78699c593bc130255cb597e20d719/.github/IMG/swappy-20240506-155104.png)
+![alt text](https://raw.githubusercontent.com/AXWTV/Hyprland-DotFiles/ac9f77f8abf78699c593bc130255cb597e20d719/.github/IMG/swappy-20240506-154421.png)
+![alt text](https://raw.githubusercontent.com/AXWTV/Hyprland-DotFiles/ac9f77f8abf78699c593bc130255cb597e20d719/.github/IMG/swappy-20240506-154441.png)
+![alt text](https://raw.githubusercontent.com/AXWTV/Hyprland-DotFiles/ac9f77f8abf78699c593bc130255cb597e20d719/.github/IMG/swappy-20240506-153800.png)
+![alt text](https://raw.githubusercontent.com/AXWTV/Hyprland-DotFiles/ac9f77f8abf78699c593bc130255cb597e20d719/.github/IMG/swappy-20240506-151527.png)
+
 ### 💥 Copying / Installation / Update instructions 💥
 - [`MORE INFO HERE`](https://github.com/AXWTV/Hyprland-DotFiles/wiki) 
 > [!Note] 
