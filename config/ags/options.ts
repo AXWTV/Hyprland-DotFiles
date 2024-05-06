@@ -4,7 +4,7 @@ import { icon } from "lib/utils"
 import icons from "lib/icons"
 
 const options = mkOptions(OPTIONS, {
-    autotheme: opt(false),
+    autotheme: opt(true),
 
     wallpaper: {
         resolution: opt<import("service/wallpaper").Resolution>(1920),
@@ -41,24 +41,24 @@ const options = mkOptions(OPTIONS, {
             border: opt("#080808"),
         },
 
-        blur: opt(0),
+        blur: opt(8),
         scheme: opt<"dark" | "light">("dark"),
         widget: { opacity: opt(94) },
         border: {
-            width: opt(1),
+            width: opt(2),
             opacity: opt(96),
         },
 
         shadows: opt(true),
-        padding: opt(7),
-        spacing: opt(12),
+        padding: opt(6),
+        spacing: opt(5),
         radius: opt(11),
     },
 
     transition: opt(200),
 
     font: {
-        size: opt(13),
+        size: opt(11),
         name: opt("Ubuntu Nerd Font"),
     },
 
@@ -100,7 +100,7 @@ const options = mkOptions(OPTIONS, {
             action: opt(() => App.toggleWindow("launcher")),
         },
         date: {
-            format: opt("%H:%M - %A %e."),
+            format: opt("%A%e  %H:%M"),
             action: opt(() => App.toggleWindow("datemenu")),
         },
         battery: {
@@ -136,7 +136,7 @@ const options = mkOptions(OPTIONS, {
             length: opt(40),
         },
         powermenu: {
-            monochrome: opt(false),
+            monochrome: opt(true),
             action: opt(() => App.toggleWindow("powermenu")),
         },
     },
@@ -152,14 +152,14 @@ const options = mkOptions(OPTIONS, {
             max: opt(16),
         },
         apps: {
-            iconSize: opt(62),
+            iconSize: opt(42),
             max: opt(6),
             favorites: opt([
                 [
-                    "firefox",
+                    "vivaldi-snapshot",
                     "org.gnome.Nautilus",
                     "org.gnome.Calendar",
-                    "obsidian",
+                    "code",
                     "discord",
                     "spotify",
                 ],
