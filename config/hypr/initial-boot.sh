@@ -47,8 +47,8 @@ if [ ! -f ~/.config/hypr/.initial_startup_done ]; then
 	if [ -f "$waybar_style" ]; then
     	ln -sf "$waybar_style" "$HOME/.config/waybar/style.css"
 
-		# Refreshing waybar, swaync, rofi etc. 
-		"$scriptsDir/Refresh.sh" > /dev/null 2>&1 & 
+		# Refreshing swaync, rofi etc. 
+		"$scriptsDir/RefreshNoWaybar.sh" > /dev/null 2>&1 & 
 	fi
 
     # Create a marker file to indicate that the script has been executed.
