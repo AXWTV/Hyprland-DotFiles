@@ -41,7 +41,7 @@ const options = mkOptions(OPTIONS, {
             border: opt("#080808"),
         },
 
-        blur: opt(8),
+        blur: opt(11),
         scheme: opt<"dark" | "light">("dark"),
         widget: { opacity: opt(94) },
         border: {
@@ -100,7 +100,7 @@ const options = mkOptions(OPTIONS, {
             action: opt(() => App.toggleWindow("launcher")),
         },
         date: {
-            format: opt("%A%e  %H:%M"),
+            format: opt("%A %e  %H:%M"),
             action: opt(() => App.toggleWindow("datemenu")),
         },
         battery: {
@@ -235,7 +235,7 @@ const options = mkOptions(OPTIONS, {
     hyprland: {
         gaps: opt(2.4),
         inactiveBorder: opt("333333ff"),
-        gapsWhenOnly: opt(false),
+        gapsWhenOnly: opt(true),
     },
 })
 
