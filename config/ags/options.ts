@@ -156,10 +156,11 @@ const options = mkOptions(OPTIONS, {
             max: opt(6),
             favorites: opt([
                 [
-                    "vivaldi-snapshot",
+                    "Vivaldi-Snapshot",
                     "org.gnome.Nautilus",
                     "org.gnome.Calendar",
                     "code",
+                    "vesktop",
                     "discord",
                     "spotify",
                 ],
