@@ -1,11 +1,12 @@
 /* eslint-disable max-len */
 import { type Opt } from "lib/option"
 import options from "options"
-import { bash, dependencies, sh } from "lib/utils"
+import { bash, dependencies } from "lib/utils"
 
 const deps = [
     "font",
     "theme",
+    "bar.corners",
     "bar.flatButtons",
     "bar.position",
     "bar.battery.charging",
@@ -64,6 +65,7 @@ const variables = () => [
     $("active-gradient", `linear-gradient(to right, ${t(dark.primary.bg, light.primary.bg)}, darken(${t(dark.primary.bg, light.primary.bg)}, 4%))`),
     $("shadow-color", t("rgba(0,0,0,.6)", "rgba(0,0,0,.4)")),
     $("text-shadow", t("2pt 2pt 2pt $shadow-color", "none")),
+    $("box-shadow", t("2pt 2pt 2pt 0 $shadow-color, inset 0 0 0 $border-width $border-color", "none")),
 
     $("popover-border-color", `transparentize(${t(dark.border, light.border)}, ${Math.max(((border.opacity.value - 1) / 100), 0)})`),
     $("popover-padding", `$padding * ${popoverPaddingMultiplier}`),
@@ -77,6 +79,7 @@ const variables = () => [
     $("bar-battery-blocks", options.bar.battery.blocks),
     $("bar-position", options.bar.position),
     $("hyprland-gaps-multiplier", options.hyprland.gaps),
+    $("screen-corner-multiplier", `${options.bar.corners.value * 0.01}`),
 ]
 
 async function resetCss() {
@@ -85,19 +88,25 @@ async function resetCss() {
 
     try {
         const vars = `${TMP}/variables.scss`
-        await Utils.writeFile(variables().join("\n"), vars)
+        const scss = `${TMP}/main.scss`
+        const css = `${TMP}/main.css`
 
-        const fd = await sh(`fd ".scss" ${App.configDir}`)
-        const files = fd.split(/\s+/).map(f => `@import '${f}';`)
-        const scss = [`@import '${vars}';`, ...files].join("\n")
-        const css = await bash`echo "${scss}" | sass --stdin`
+        const fd = await bash(`fd ".scss" ${App.configDir}`)
+        const files = fd.split(/\s+/)
+        const imports = [vars, ...files].map(f => `@import '${f}';`)
+
+        await Utils.writeFile(variables().join("\n"), vars)
+        await Utils.writeFile(imports.join("\n"), scss)
+        await bash`sass ${scss} ${css}`
 
         App.applyCss(css, true)
     } catch (error) {
-        logError(error)
+        error instanceof Error
+            ? logError(error)
+            : console.error(error)
     }
 }
 
-Utils.monitorFile(App.configDir, resetCss)
+Utils.monitorFile(`${App.configDir}/style`, resetCss)
 options.handler(deps, resetCss)
 await resetCss()

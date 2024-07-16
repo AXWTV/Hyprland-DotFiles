@@ -65,7 +65,8 @@ const options = mkOptions(OPTIONS, {
     bar: {
         flatButtons: opt(true),
         position: opt<"top" | "bottom">("top"),
-        corners: opt(true),
+        corners: opt(50),
+        transparent: opt(false),
         layout: {
             start: opt<Array<import("widget/bar/Bar").BarWidget>>([
                 "launcher",
@@ -160,7 +161,6 @@ const options = mkOptions(OPTIONS, {
                     "org.gnome.Nautilus",
                     "org.gnome.Calendar",
                     "code",
-                    "vesktop",
                     "discord",
                     "spotify",
                 ],
@@ -235,8 +235,8 @@ const options = mkOptions(OPTIONS, {
 
     hyprland: {
         gaps: opt(2.4),
-        inactiveBorder: opt("333333ff"),
-        gapsWhenOnly: opt(true),
+        inactiveBorder: opt("#282828"),
+        gapsWhenOnly: opt(false),
     },
 })
 
