@@ -32,7 +32,9 @@ class Nix extends Service {
 
     get db() { return this.#db }
     get ready() { return this.#ready }
-    get available() { return Utils.exec("which nix") }
+    get available() {
+        return Utils.exec("which nix", () => true, () => false)
+    }
 
     constructor() {
         super()
@@ -84,8 +86,7 @@ class Nix extends Service {
         this.ready = false
         this.#db = {}
 
-        // const search = await bash(`nix search ${nixpkgs} --json`)
-        const search = ""
+        const search = await bash(`nix search ${nixpkgs} --json`)
         if (!search) {
             this.ready = true
             return
