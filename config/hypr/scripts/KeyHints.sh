@@ -44,7 +44,7 @@ yad --width=$dynamic_width --height=$dynamic_height \
 " Q" "close active window" "(not kill)" \
 " Shift Q " "closes a specified window" "(window)" \
 " Alt V" "Clipboard Manager" "(cliphist)" \
-" ALT R" "Reload Hyprland" "CHECK NOTIFICATION FIRST!!!" \
+" R" "Reload Hyprland" "Reloads AGS and Hyprland" \
 " Print" "screenshot" "(grim)" \
 " Shift Print" "screenshot region" "(grim + slurp)" \
 " Shift S" "screenshot region" "(swappy)" \
@@ -56,12 +56,9 @@ yad --width=$dynamic_width --height=$dynamic_height \
 " ALT L" "Toggle Dwindle | Master Layout" "Hyprland Layout" \
 " Shift F" "Toggle float" "single window" \
 " ALT F" "Toggle all windows to float" "all windows" \
-" Shift B" "Toggle Blur" "normal or less blur" \
 " SHIFT G" "Gamemode! All animations OFF or ON" "toggle" \
+" Shift B" "Toggle Blur" "normal or less blur" \
 " H" "Launch this app" "" \
 " E" "View or EDIT Keybinds, Settings, Monitor" "" \
 "" "" "" \
-"More tips:" "https://github.com/JaKooLit/Hyprland-Dots/wiki" ""\
-
-
-
+"More tips:" "https://github.com/AXWTV/Hyprland-DotFiles/wiki" ""\
