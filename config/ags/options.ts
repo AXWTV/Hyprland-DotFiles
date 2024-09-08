@@ -15,13 +15,13 @@ const options = mkOptions(OPTIONS, {
         dark: {
             primary: {
                 bg: opt("#51a4e7"),
-                fg: opt("#141414"),
+                fg: opt("#000000"),
             },
             error: {
                 bg: opt("#e55f86"),
-                fg: opt("#141414"),
+                fg: opt("#000000"),
             },
-            bg: opt("#171717"),
+            bg: opt("#000000"),
             fg: opt("#eeeeee"),
             widget: opt("#eeeeee"),
             border: opt("#eeeeee"),
@@ -157,11 +157,11 @@ const options = mkOptions(OPTIONS, {
             max: opt(6),
             favorites: opt([
                 [
-                    "Vivaldi-Snapshot",
+                    "Vivaldi-Stable",
                     "org.gnome.Nautilus",
                     "org.gnome.Calendar",
                     "code",
-                    "discord",
+                    "vesktop",
                     "spotify",
                 ],
             ]),
