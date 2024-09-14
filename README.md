@@ -14,7 +14,7 @@
 <br/>
 </div>
 
-![alt text]()
+![alt text](https://github.com/AXWTV/Hyprland-DotFiles/blob/main/.github/IMG/arch%20screenshot2s.jpg?raw=true)
 
 ### 💥 Copying / Installation / Update instructions 💥
 - [`MORE INFO HERE`](https://github.com/AXWTV/Hyprland-DotFiles/wiki) 
