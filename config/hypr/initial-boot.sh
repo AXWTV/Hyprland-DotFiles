@@ -7,7 +7,7 @@
 
 # Variables
 scriptsDir=$HOME/.config/hypr/scripts
-wallpaper=$HOME/Pictures/wallpapers/Fantasy-Landscape.png
+wallpaper=$HOME/Pictures/wallpapers/10516833.png
 waybar_style="$HOME/.config/waybar/style/[Pywal] Chroma Tally.css"
 kvantum_theme="Tokyo-Night"
 
@@ -24,12 +24,6 @@ if [ ! -f ~/.config/hypr/.initial_startup_done ]; then
 	    "$scriptsDir/PywalSwww.sh" > /dev/null 2>&1 & 
 	fi
      
-    # Initial symlink for ags to work
-    ln -fs ~/.bun/bin/bun /usr/bin/bun
-    
-    # Initial symlink for Pywal Dark and Light for Rofi Themes
-    ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/pywal-theme.rasi" > /dev/null 2>&1 &
-
     # initiate GTK dark mode and apply icon and cursor theme
     gsettings set org.gnome.desktop.interface color-scheme prefer-dark > /dev/null 2>&1 &
     gsettings set org.gnome.desktop.interface gtk-theme Tokyonight-Dark-BL-LB > /dev/null 2>&1 &
@@ -42,14 +36,6 @@ if [ ! -f ~/.config/hypr/.initial_startup_done ]; then
 
     # initiate the kb_layout (for some reason) waybar cant launch it
     "$scriptsDir/SwitchKeyboardLayout.sh" > /dev/null 2>&1 &
-
-    # Initial waybar style
-	if [ -f "$waybar_style" ]; then
-    	ln -sf "$waybar_style" "$HOME/.config/waybar/style.css"
-
-		# Refreshing swaync, rofi etc. 
-		"$scriptsDir/RefreshNoWaybar.sh" > /dev/null 2>&1 & 
-	fi
 
     # Create a marker file to indicate that the script has been executed.
     touch ~/.config/hypr/.initial_startup_done
