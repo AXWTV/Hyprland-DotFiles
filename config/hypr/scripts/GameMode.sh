@@ -21,8 +21,10 @@ if [ "$HYPRGAMEMODE" = 1 ] ; then
     exit
 else
 	 hyprctl reload
-   ags -q && ags
-    notify-send -e -u normal -i "$notif" "gamemode disabled. All animations normal"
-    exit
+   ags -q && ags 
+   swww query || swww init
+   sleep 4
+   notify-send -e -u low -i "$notif" "gamemode disabled. All animations normal"
+   exit
 fi
 hyprctl reload
