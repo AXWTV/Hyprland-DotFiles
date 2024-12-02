@@ -1,0 +1,34 @@
+ls
+gt
+vim
+nvim
+tmux
+ll
+ls
+lsd
+lsd -l
+ps
+chsh -l
+tmux new-session -A -s AXWTV
+exit
+exitg
+exit
+ls
+starship preset gruvbox-rainbow -o ~/.config/starship.toml
+starship preset pure-preset -o ~/.config/starship.toml
+chsh -s /bin/zsh
+exit
+gt
+cd ..
+exit
+$env | reject config | transpose key val | each {|r| echo $"$env.($r.key) = '($r.val)'"} | str join (char nl)
+starship preset pure-preset -o ~/.config/starship.toml
+starship preset pure-preset -o ~/starship.toml
+gt
+ls
+cd Hyprland-DotFiles/
+cd ..
+cd Hyprland-Installer/
+cd ..
+starship preset pure-preset -o ~/.config/starship.toml
+starship preset pure-preset -o ~/starship.toml
