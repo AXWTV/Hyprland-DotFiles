@@ -34,7 +34,7 @@ multiplier = 3
 save_to_clipboard = false
 
 [terminal.shell]
-program = "/usr/bin/nu"
+program = "/usr/bin/zsh"
 
 [general]
 import = ["~/.cache/wal/color-alacritty.toml"]
