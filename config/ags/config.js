@@ -6,7 +6,7 @@ const bundler = GLib.getenv("AGS_BUNDLER") || "bun"
 
 const v = {
     ags: pkg.version?.split(".").map(Number) || [],
-    expect: [1, 8, 1],
+    expect: [1, 9, 1],
 }
 
 try {
