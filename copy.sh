@@ -1,11 +1,10 @@
 #!/bin/bash
+set -e  # Exit immediately if a command fails
+
 ### https://github.com/JaKooLit/JaKooLit
 ### https://github.com/AXWTV
 
 clear
-
-wallpaper=$HOME/Pictures/wallpapers/Lofi-Room.png
-Waybar_Style="$HOME/.config/waybar/style/[Pywal] Simple.css"
 
 # Check if running as root. If root, script will exit
 if [[ $EUID -eq 0 ]]; then
@@ -34,11 +33,9 @@ YELLOW=$(tput setaf 3)
 RESET=$(tput sgr0)
 
 # Create Directory for Copy Logs
-if [ ! -d Copy-Logs ]; then
-    mkdir Copy-Logs
-fi
+mkdir -p Copy-Logs
 
-# Set the name of the log file to include the current date and time
+# Set the name of the log file to include the current date and time (with seconds)
 LOG="Copy-Logs/install-$(date +%d-%H%M%S)_dotfiles.log"
 
 # update home folders
@@ -46,7 +43,6 @@ xdg-user-dirs-update 2>&1 | tee -a "$LOG" || true
 
 # uncommenting WLR_NO_HARDWARE_CURSORS if nvidia is detected
 if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia; then
-  # NVIDIA GPU detected, uncomment line 23 in ENVariables.conf
   sed -i '/env = WLR_NO_HARDWARE_CURSORS,1/s/^#//' config/hypr/UserConfigs/ENVariables.conf
   sed -i '/env = LIBVA_DRIVER_NAME,nvidia/s/^#//' config/hypr/UserConfigs/ENVariables.conf
   sed -i '/env = __GLX_VENDOR_LIBRARY_NAME,nvidia/s/^#//' config/hypr/UserConfigs/ENVariables.conf
@@ -64,197 +60,130 @@ fi
 detect_layout() {
   if command -v localectl >/dev/null 2>&1; then
     layout=$(localectl status --no-pager | awk '/X11 Layout/ {print $3}')
-    if [ -n "$layout" ]; then
-      echo "$layout"
-    else
-      echo "unknown"
-    fi
+    echo "${layout:-unknown}"
   elif command -v setxkbmap >/dev/null 2>&1; then
-    layout=$(setxkbmap -query | grep layout | awk '{print $2}')
-    if [ -n "$layout" ]; then
-      echo "$layout"
-    else
-      echo "unknown"
-    fi
+    layout=$(setxkbmap -query | awk '/layout/ {print $2}')
+    echo "${layout:-unknown}"
   else
     echo "unknown"
   fi
 }
 
-# Detect the current keyboard layout
 layout=$(detect_layout)
 
 printf "${NOTE} Detecting keyboard layout to prepare necessary changes in hyprland.conf before copying\n\n"
 
-# Prompt the user to confirm whether the detected layout is correct
 while true; do
     read -p "$ORANGE Detected current keyboard layout is: $layout. Is this correct? [y/n] " confirm
-
     case $confirm in
         [yY])
-            # If the detected layout is correct, update the 'kb_layout=' line in the file
             awk -v layout="$layout" '/kb_layout/ {$0 = "  kb_layout=" layout} 1' config/hypr/UserConfigs/UserSettings.conf > temp.conf
             mv temp.conf config/hypr/UserConfigs/UserSettings.conf
-            echo "${NOTE} kb_layout $layout configured in settings.  " 2>&1 | tee -a "$LOG"
+            echo "${NOTE} kb_layout $layout configured in settings." | tee -a "$LOG"
             break ;;
         [nN])
             printf "\n%.0s" {1..2}
             echo "$(tput bold)$(tput setaf 3)ATTENTION!!!! VERY IMPORTANT!!!! $(tput sgr0)" 
             echo "$(tput bold)$(tput setaf 7)Setting a wrong value here will result in Hyprland not starting $(tput sgr0)"
             echo "$(tput bold)$(tput setaf 7)If you are not sure, keep it in us layout. You can change later on! $(tput sgr0)"
-            echo "$(tput bold)$(tput setaf 7)You can also set more than 2 layouts!$(tput sgr0)"
-            echo "$(tput bold)$(tput setaf 7)ie: us,kr,es $(tput sgr0)"
+            echo "$(tput bold)$(tput setaf 7)You can also set more than 2 layouts! Example: us,kr,es $(tput sgr0)"
             printf "\n%.0s" {1..2}
             read -p "${CAT} - Please enter the correct keyboard layout: " new_layout
-            # Update the 'kb_layout=' line with the correct layout in the file
             awk -v new_layout="$new_layout" '/kb_layout/ {$0 = "  kb_layout=" new_layout} 1' config/hypr/UserConfigs/UserSettings.conf > temp.conf
             mv temp.conf config/hypr/UserConfigs/UserSettings.conf
-            echo "${NOTE} kb_layout $new_layout configured in settings." 2>&1 | tee -a "$LOG" 
+            echo "${NOTE} kb_layout $new_layout configured in settings." | tee -a "$LOG"
             break ;;
         *)
             echo "Please enter either 'y' or 'n'." ;;
     esac
 done
 
-printf "\n"
-
-# Action to do for better rofi appearance
-while true; do
-    echo "$ORANGE Select monitor resolution for better Rofi appearance:"
-    echo "$YELLOW 1. Equal to or less than 1080p (≤ 1080p)"
-    echo "$YELLOW 2. Equal to or higher than 1440p (≥ 1440p)"
-    read -p "$CAT Enter the number of your choice: " choice
-
-    case $choice in
-        1)
-            resolution="≤ 1080p"
-            break
-            ;;
-        2)
-            resolution="≥ 1440p"
-            break
-            ;;
-        *)
-            echo "Invalid choice. Please enter 1 for ≤ 1080p or 2 for ≥ 1440p."
-            ;;
-    esac
-done
-
-# Use the selected resolution in your existing script
-echo "You chose $resolution resolution for better Rofi appearance." 2>&1 | tee -a "$LOG"
-
-# Add your commands based on the resolution choice
-if [ "$resolution" == "≤ 1080p" ]; then
-    cp -r config/rofi/resolution/1080p/* config/rofi/
-elif [ "$resolution" == "≥ 1440p" ]; then
-    cp -r config/rofi/resolution/1440p/* config/rofi/
-fi
-
 printf "\n%.0s" {1..2}
 
 ### Copy Config Files ###
-set -e # Exit immediately if a command exits with a non-zero status.
+printf "${NOTE} - Copying dotfiles\n"
 
-printf "${NOTE} - copying dotfiles\n"
-# Function to create a unique backup directory name with month, day, hours, and minutes
 get_backup_dirname() {
   local timestamp
-  timestamp=$(date +"%m%d_%H%M")
+  timestamp=$(date +"%m%d_%H%M%S")
   echo "back-up_${timestamp}"
 }
 
 for DIR in alacritty btop cava hypr kitty Kvantum qt5ct qt6ct rofi swappy swaync swaylock tmux wal waybar wlogout; do 
-  DIRPATH=~/.config/"$DIR"
+  DIRPATH="$HOME/.config/$DIR"
   if [ -d "$DIRPATH" ]; then 
     echo -e "${NOTE} - Config for $DIR found, attempting to back up."
     BACKUP_DIR=$(get_backup_dirname)
-    mv "$DIRPATH" "$DIRPATH-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
+    mv "$DIRPATH" "$DIRPATH-backup-$BACKUP_DIR" | tee -a "$LOG"
     echo -e "${NOTE} - Backed up $DIR to $DIRPATH-backup-$BACKUP_DIR."
   fi
 done
 
-if [ -f ~/.cache/nvim ]; then
-  rm -rf ~/.cache/nvim
+# Clear Neovim caches and config
+if [ -d "$HOME/.cache/nvim" ]; then
+  rm -rf "$HOME/.cache/nvim"
   echo "Nvim cache has been cleared."
 fi
 
-if [ -d ~/.local/share/nvim ]; then
-  rm -rf ~/.local/share/nvim
-  echo "Nvm directory has been cleared."
+if [ -d "$HOME/.local/share/nvim" ]; then
+  rm -rf "$HOME/.local/share/nvim"
+  echo "Nvim local share directory has been cleared."
 fi
 
-if [ -d ~/.config/nvim ]; then
-  rm -rf ~/.config/nvim
-  echo "Nvm directory has been cleared."
+if [ -d "$HOME/.config/nvim" ]; then
+  rm -rf "$HOME/.config/nvim"
+  echo "Nvim config directory has been cleared."
 fi
 
-git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
+git clone https://github.com/NvChad/NvChad "$HOME/.config/nvim" --depth 1
 
-for DIRw in wallpapers; do 
-  DIRPATH=~/Pictures/"$DIRw"
-  if [ -d "$DIRPATH" ]; then 
-    echo -e "${NOTE} - Wallpapers in $DIRw found, attempting to back up."
-    BACKUP_DIR=$(get_backup_dirname)
-    mv "$DIRPATH" "$DIRPATH-backup-$BACKUP_DIR" 2>&1 | tee -a "$LOG"
-    echo -e "${NOTE} - Backed up $DIRw to $DIRPATH-backup-$BACKUP_DIR."
-  fi
-done
+# Backup wallpapers
+DIRPATH="$HOME/Pictures/wallpapers"
+if [ -d "$DIRPATH" ]; then 
+  echo -e "${NOTE} - Wallpapers found, attempting to back up."
+  BACKUP_DIR=$(get_backup_dirname)
+  mv "$DIRPATH" "$DIRPATH-backup-$BACKUP_DIR" | tee -a "$LOG"
+  echo -e "${NOTE} - Backed up wallpapers to $DIRPATH-backup-$BACKUP_DIR."
+fi
 
 printf "\n%.0s" {1..2}
 
 # Copying config files
-mkdir -p ~/.config
-cp -r config/* ~/.config/ && { echo "${OK}Copy completed!"; } || { echo "${ERROR} Failed to copy config files."; exit 1; } 2>&1 | tee -a "$LOG"
+mkdir -p "$HOME/.config"
+cp -r config/* "$HOME/.config/" && { echo "${OK} ✅ Config copy completed!"; } || { echo "${ERROR} ❌ Failed to copy config files."; exit 1; } | tee -a "$LOG"
 
-# copying Wallpapers
-mkdir -p ~/Pictures/wallpapers
-cp -r wallpapers ~/Pictures/ && { echo "${OK}Copy completed!"; } || { echo "${ERROR} Failed to copy wallpapers."; exit 1; } 2>&1 | tee -a "$LOG"
- 
-# Set some files as executable
-chmod +x ~/.config/hypr/scripts/* 2>&1 | tee -a "$LOG"
-chmod +x ~/.config/hypr/UserScripts/* 2>&1 | tee -a "$LOG"
-# Set executable for initial-boot.sh
-chmod +x ~/.config/hypr/initial-boot.sh 2>&1 | tee -a "$LOG"
-printf "\n%.0s" {1..3}
+# Copying wallpapers
+mkdir -p "$HOME/Pictures/wallpapers"
+cp -r wallpapers "$HOME/Pictures/" && { echo "${OK} ✅ Wallpaper copy completed!"; } || { echo "${ERROR} ❌ Failed to copy wallpapers."; exit 1; } | tee -a "$LOG"
 
-# Detect machine type and set Waybar configurations accordingly, logging the output
-if hostnamectl | grep -q 'Chassis: desktop'; then
-    # Configurations for a desktop
-    ln -sf "$HOME/.config/waybar/configs/[TOP] Default" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
-    rm -r "$HOME/.config/waybar/configs/[TOP] Default Laptop" "$HOME/.config/waybar/configs/[BOT] Default Laptop" 2>&1 | tee -a "$LOG"
-else
-    # Configurations for a laptop or any system other than desktop
-    ln -sf "$HOME/.config/waybar/configs/[TOP] Default Laptop" "$HOME/.config/waybar/config" 2>&1 | tee -a "$LOG"
-    rm -r "$HOME/.config/waybar/configs/[TOP] Default" "$HOME/.config/waybar/configs/[BOT] Default" 2>&1 | tee -a "$LOG"
-fi
+# Make scripts executable
+chmod +x "$HOME/.config/hypr/scripts/"* | tee -a "$LOG"
+chmod +x "$HOME/.config/hypr/initial-boot.sh" | tee -a "$LOG"
 
 printf "\n%.0s" {1..3}
-
-# additional wallpapers
 echo "$(tput setaf 6) By default only a few wallpapers are copied...$(tput sgr0)"
 printf "\n%.0s" {1..2}
 
 while true; do
-    read -rp "${CAT} Would you like to download additional wallpapers? (y/n)" WALL
+    read -rp "${CAT} Would you like to download additional wallpapers? (y/n) " WALL
     case $WALL in
         [Yy])
             echo "${NOTE} Downloading additional wallpapers..."
             if git clone "https://github.com/AXWTV/Wallpaper-Area.git"; then
-                echo "${NOTE} Wallpapers downloaded successfully." 2>&1 | tee -a "$LOG"
-
-                if cp -R Wallpaper-Area/wallpapers/* ~/Pictures/wallpapers/ >> "$LOG" 2>&1; then
-                    echo "${NOTE} Wallpapers copied successfully." 2>&1 | tee -a "$LOG"
-                    rm -rf Wallpaper-Area 2>&1 # Remove cloned repository after copying wallpapers
+                echo "${NOTE} Wallpapers downloaded successfully." | tee -a "$LOG"
+                if cp -R Wallpaper-Area/wallpapers/* "$HOME/Pictures/wallpapers/" >> "$LOG" 2>&1; then
+                    echo "${NOTE} Wallpapers copied successfully." | tee -a "$LOG"
+                    rm -rf Wallpaper-Area
                     break
                 else
-                    echo "${ERROR} Copying wallpapers failed" 2>&1 | tee -a "$LOG"
+                    echo "${ERROR} Copying wallpapers failed" | tee -a "$LOG"
                 fi
             else
-                echo "${ERROR} Downloading additional wallpapers failed" 2>&1 | tee -a "$LOG"
+                echo "${ERROR} Downloading additional wallpapers failed" | tee -a "$LOG"
             fi
             ;;
         [Nn])
-            echo "You chose not to download additional wallpapers." 2>&1 | tee -a "$LOG"
+            echo "You chose not to download additional wallpapers." | tee -a "$LOG"
             break
             ;;
         *)
@@ -263,17 +192,7 @@ while true; do
     esac
 done
 
-# symlinks for waybar style
-ln -sf "$Waybar_Style" "$HOME/.config/waybar/style.css" && \
-
-# initialize pywal to avoid config error on hyprland
-wal -i $wallpaper -s -t 2>&1 | tee -a "$LOG"
-
-#initial symlink for Pywal Dark and Light for Rofi Themes
-ln -sf "$HOME/.cache/wal/colors-rofi-dark.rasi" "$HOME/.config/rofi/pywal-color/pywal-theme.rasi"
-
-
 printf "\n%.0s" {1..2}
-printf "\n${OK} Copy Completed!\n\n\n"
-printf "${ORANGE} ATTENTION!!!! \n"
-printf "${ORANGE} YOU NEED to logout and re-login or reboot to avoid issues\n\n"
+echo -e "\n${OK} ✅ Copy Completed!\n"
+echo -e "${ORANGE} ⚠️  ATTENTION!!!!"
+echo -e "${ORANGE} You NEED to logout and re-login or reboot to avoid issues\n"
