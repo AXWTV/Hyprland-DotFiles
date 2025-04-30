@@ -63,7 +63,7 @@ const options = mkOptions(OPTIONS, {
     },
 
     bar: {
-        flatButtons: opt(true),
+        flatButtons: opt(false),
         position: opt<"top" | "bottom">("top"),
         corners: opt(50),
         transparent: opt(false),
@@ -105,7 +105,7 @@ const options = mkOptions(OPTIONS, {
             action: opt(() => App.toggleWindow("datemenu")),
         },
         battery: {
-            bar: opt<"hidden" | "regular" | "whole">("regular"),
+            bar: opt<"hidden" | "regular" | "whole">("hidden"),
             charging: opt("#00D787"),
             percentage: opt(true),
             blocks: opt(7),
@@ -113,11 +113,11 @@ const options = mkOptions(OPTIONS, {
             low: opt(30),
         },
         workspaces: {
-            workspaces: opt(7),
+            workspaces: opt(10),
         },
         taskbar: {
             iconSize: opt(0),
-            monochrome: opt(true),
+            monochrome: opt(false),
             exclusive: opt(false),
         },
         messages: {
@@ -130,7 +130,7 @@ const options = mkOptions(OPTIONS, {
             ]),
         },
         media: {
-            monochrome: opt(true),
+            monochrome: opt(false),
             preferred: opt("spotify"),
             direction: opt<"left" | "right">("right"),
             format: opt("{artists} - {title}"),
@@ -157,7 +157,7 @@ const options = mkOptions(OPTIONS, {
             max: opt(6),
             favorites: opt([
                 [
-                    "zen",
+                    "vivaldi",
                     "org.gnome.Nautilus",
                     "org.gnome.Calendar",
                     "code",
@@ -170,8 +170,8 @@ const options = mkOptions(OPTIONS, {
 
     overview: {
         scale: opt(9),
-        workspaces: opt(7),
-        monochromeIcon: opt(true),
+        workspaces: opt(10),
+        monochromeIcon: opt(false),
     },
 
     powermenu: {
